@@ -1,5 +1,21 @@
 # Ändringslogg
 
+## 27 november 2026 – del 2, försiktig interaktion
+
+- Skapat en separat arbetsgren: `feature/del2-safe-enhancements`. Produktionsgrenen `main` är oförändrad.
+- Lagt till `js/vetero-effects-config.js` med separata reglage för de nya effekterna.
+- Lagt till en lätt 2.5D-rörelse på startsidans befintliga produktfoto, med tryckknapp, återställning och pekarrörelse.
+- Lagt till en separat, förenklad SVG-illustration för att knyta och lossa banden. Den förväxlas inte med ett frilagt produktfoto.
+- Lagt till femstegsberättelse i vanligt dokumentflöde, med länkar till stegen och scrollmarkering.
+- Lagt till en schematisk kornillustration med tangentbordsstyrt reglage och tydlig märkning att den inte är en mätning.
+- Lagt till mobilens snabba mejlknapp, läsprogress, krympande desktop-header och sticky produktgalleri på större skärmar.
+- Lagt till försiktiga FAQ-övergångar där webbläsaren stöder dem.
+- Förbättrat fallback utan JavaScript och lagt till `EFFECTS.md`.
+- Inga externa paket eller tredjepartsbibliotek installerades. Three.js, GSAP, ScrollTrigger, Lenis och Matter.js används inte.
+- Ingen Lighthouse-mätning, fysisk enhetstestning eller FPS-verifiering har utförts. Gränsen 90 poäng är därför inte verifierad.
+
+## 27 november 2026
+
 ## 27 november 2026
 
 ### Copy och produktinformation
