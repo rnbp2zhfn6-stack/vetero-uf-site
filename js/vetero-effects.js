@@ -211,12 +211,6 @@ if (isEnabled("grainDemo")) {
       if (slider) slider.value = "0";
       setTilt(0);
     });
-    slider?.addEventListener("keydown", event => {
-      if (event.key === "Home") {
-        slider.value = "0";
-        setTilt(0);
-      }
-    });
     setTilt(slider?.value || 0);
   }
 }
