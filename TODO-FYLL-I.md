@@ -46,3 +46,15 @@ Okända uppgifter har inte fyllts i på chans. Uppdatera dem när ni har kontrol
 ## Kodplatser
 - Vanliga värden som pris, mejl, storlek, lager, frakt, betalning och juldeadline: js/site-config.js.
 - Bekräftade uppgifter som saknas i kundtext markeras med TODO-FYLL-I-kommentarer i js/site-config.js och i denna fil.
+
+
+## Interaktioner – del 2
+- [ ] Ta fram separata, transparenta bilder av hela kudden, ytterfodralet, innerkudden och knytbanden innan en mer realistisk lokal tygdeformation byggs.
+- [ ] Ta närbilder på tyg och sömmar om en trovärdig materialtextur önskas.
+- [ ] Testa knyt/lossa-illustrationen och hero-rörelsen med riktiga användare på mobil och desktop.
+- [ ] Kör Lighthouse på startsida och produktsida före och efter att arbetsgrenen förhandsgranskats.
+- [ ] Kontrollera mobilens köpfält med tangentbord öppet, skärmläsare och iOS Safari.
+- [ ] Verifiera sticky-galleri på låg skärm och med webbläsarzoom.
+- [ ] Testa reducerad rörelse, JavaScript avstängt och webbläsare utan IntersectionObserver.
+- [ ] Mät scrollprestanda på en vanlig mellanklasstelefon innan fler effekter läggs till.
+- [ ] Besluta om pinned scrollscen och Three.js behövs efter bildmaterial och prestandatester. De är avstängda i nuvarande version.

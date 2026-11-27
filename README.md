@@ -13,12 +13,15 @@ Officiell webbplats för VeteRo UF i Ulricehamn.
 - js/site-config.js – gemensamma värden, bland annat pris, e-post och storlek
 - js/vetero-storefront.js – mobilmeny, bildvisning, lightbox och kopiera e-post
 - js/vetero-layer-explorer.js – interaktiv visning av kudden
+- js/vetero-effects-config.js – reglage för valbara effekter
+- js/vetero-effects.js – lättviktsinteraktioner, korndemo, scrollmarkering och mobilt köpfält
 
 ## Beställning
 Beställningsförfrågningar hanteras via e-post: [vetero.uf@gmail.com](mailto:vetero.uf@gmail.com). Ett mejl är en förfrågan. Köpet bekräftas separat när kunden och VeteRo UF har kommit överens.
 
 ## Dokumentation
 - AUDIT.md – granskning av innehåll och kod
+- EFFECTS.md – dokumentation av animationer och effektreglage
 - CHANGELOG.md – ändringslogg
 - TODO-FYLL-I.md – uppgifter som företaget behöver bekräfta
 

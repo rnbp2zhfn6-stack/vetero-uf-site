@@ -26,7 +26,7 @@ window.addEventListener("scroll", () => {
   if (scrollTick) return;
   scrollTick = true;
   requestAnimationFrame(() => {
-    header?.classList.toggle("is-scrolled", window.scrollY > 12);
+    header?.classList.toggle("is-scrolled", window.VETERO_EFFECTS?.headerShrink !== false && window.scrollY > 12);
     scrollTick = false;
   });
 }, { passive: true });
@@ -67,7 +67,9 @@ function closeLightbox() {
 }
 
 const galleryThumbs = document.querySelectorAll("[data-gallery-thumb]");
+lightboxOpen && (lightboxOpen.disabled = false);
 galleryThumbs.forEach(button => {
+  button.disabled = false;
   button.addEventListener("click", () => {
     if (!mainImage) return;
     mainImage.src = button.dataset.image;

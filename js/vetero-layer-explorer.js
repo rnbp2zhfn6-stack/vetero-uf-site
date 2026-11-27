@@ -82,6 +82,7 @@ if (root) {
   }
 
   selectButtons.forEach(button => {
+    button.disabled = false;
     const indexForLayer = layerById.get(button.dataset.vrSelect);
     if (indexForLayer === undefined) {
       button.disabled = true;
