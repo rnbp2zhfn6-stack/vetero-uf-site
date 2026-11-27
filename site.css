@@ -403,3 +403,34 @@
   .hero h1.hero-logo-title{font-size:90px}
   .hero h1.hero-logo-title em{font-size:23px;margin-top:12px}
 }
+
+/* Small usability and content improvements */
+.skip-link{position:fixed;left:16px;top:10px;z-index:200;padding:12px 16px;background:#fff;color:var(--green);border:2px solid var(--green);border-radius:8px;transform:translateY(-160%);transition:transform .15s ease}
+.skip-link:focus{transform:translateY(0)}
+.hero-actions .button{gap:8px}
+.order-steps{list-style:none;padding:0;margin:20px 0 24px;display:grid;gap:15px}
+.order-steps li{display:grid;grid-template-columns:34px 1fr;gap:12px;align-items:start}
+.order-steps li>span{display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:#e8ecdf;color:#52644d;font-size:10px;font-weight:700}
+.order-steps strong{display:block;font-size:13px;font-weight:650}
+.order-steps p{margin:3px 0 0;color:var(--muted);font-size:12px;line-height:1.55}
+.copy-email-button{min-height:44px;padding:8px 14px;border:1px solid rgba(255,255,255,.55);border-radius:999px;background:transparent;color:inherit;font-size:12px;font-weight:600;cursor:pointer}
+.copy-email-button:hover{background:rgba(255,255,255,.12)}
+.copy-email-button:focus-visible{outline:3px solid #d6dfcc;outline-offset:3px}
+.copy-email-status{display:block;min-height:20px;margin-top:8px;font-size:11px;color:inherit}
+.contact-card .order-steps{margin-top:22px}
+.contact-card .order-steps li>span{background:#e8ecdf;color:#52644d}
+.contact-card .copy-email-button{border-color:var(--line);color:var(--green)}
+.contact-card .copy-email-button:hover{background:var(--beige)}
+.buy-steps{margin-top:28px;padding-top:21px;border-top:1px solid var(--line)}
+.buy-steps h2{font:500 24px/1.2 var(--serif);margin:0 0 14px}
+.product-safety-section{padding:42px 0 10px}
+.safety-note{padding:28px 32px;border:1px solid rgba(111,123,95,.2);border-radius:20px;background:linear-gradient(135deg,#f1f3eb,#fbf7f0)}
+.safety-note h2{font:500 30px/1.1 var(--serif);margin:10px 0}
+.safety-note p,.safety-note li{font-size:13px;color:var(--muted);line-height:1.7}
+.safety-note ul{padding-left:20px;margin:12px 0}
+.safety-note li{padding:3px 0}
+.safety-note .safety-footnote{font-size:11px;margin:12px 0 0}
+.product-bottom-cta{margin-top:25px}
+.footer-links a:focus-visible,.nav a:focus-visible,.text-link:focus-visible{outline:3px solid var(--sage);outline-offset:4px;border-radius:3px}
+.menu-button{min-width:44px;min-height:44px}
+@media(max-width:650px){.safety-note{padding:22px 19px}.safety-note h2{font-size:26px}.order-steps{gap:12px}.copy-email-button{min-height:44px}}
