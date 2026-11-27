@@ -24,6 +24,19 @@
   document.querySelectorAll('[data-config="size"]').forEach(node => {
     node.textContent = config.size;
   });
+  const productSchema = document.querySelector("#product-jsonld");
+  if (productSchema) {
+    try {
+      const schema = JSON.parse(productSchema.textContent);
+      schema["@graph"]?.forEach(item => {
+        if (item["@type"] === "Product" && item.offers) item.offers.price = String(config.price);
+      });
+      productSchema.textContent = JSON.stringify(schema);
+    } catch (error) {
+      console.warn("Kunde inte uppdatera produktens strukturerade data.", error);
+    }
+  }
+
   document.querySelectorAll("[data-order-link]").forEach(link => {
     const subject = encodeURIComponent("Köpförfrågan – VeteRo vetekudde");
     const body = encodeURIComponent("Hej!\n\nJag är intresserad av att köpa en VeteRo-vetekudde.\n\nKan ni återkomma med information om betalning och leverans?\n\nHälsningar");
