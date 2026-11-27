@@ -14,7 +14,7 @@
     ties: {
       eyebrow: "Knytband",
       title: "Fäst kudden där du vill ha den",
-      copy: "De knytbanden sitter vid båda kortsidorna. De gör det möjligt att knyta fast VeteRo där du använder den.",
+      copy: "Knytbanden sitter vid båda kortsidorna och gör det möjligt att fästa VeteRo där du använder den.",
       image: "https://static.wixstatic.com/media/f8d78f_65e624ea5bc04388900ea530c4e6e651~mv2.jpg",
       alt: "Originalfoto av VeteRos örngott och knytband"
     },
