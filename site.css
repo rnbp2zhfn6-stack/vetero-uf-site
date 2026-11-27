@@ -611,3 +611,12 @@ html.no-js .page-progress{display:none}
   .pillow-control-button:hover{transform:none;box-shadow:none}
 }
 html.no-js .grain-controls{display:none}
+
+
+@supports selector(details::details-content) and (interpolate-size: allow-keywords){
+  html.effects-faq-motion details::details-content{
+    height:0;opacity:0;overflow:clip;interpolate-size:allow-keywords;
+    transition:height .24s ease,opacity .18s ease,content-visibility .24s allow-discrete;
+  }
+  html.effects-faq-motion details[open]::details-content{height:auto;opacity:1}
+}
