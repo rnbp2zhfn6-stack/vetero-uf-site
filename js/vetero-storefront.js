@@ -67,7 +67,9 @@ function closeLightbox() {
 }
 
 const galleryThumbs = document.querySelectorAll("[data-gallery-thumb]");
+lightboxOpen && (lightboxOpen.disabled = false);
 galleryThumbs.forEach(button => {
+  button.disabled = false;
   button.addEventListener("click", () => {
     if (!mainImage) return;
     mainImage.src = button.dataset.image;
