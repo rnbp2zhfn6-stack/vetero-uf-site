@@ -32,3 +32,54 @@
 .product-bottom-cta{margin-top:32px}
 @media(max-width:850px){.product-benefit-grid,.product-material-grid{grid-template-columns:1fr 1fr}.product-uses-grid{grid-template-columns:1fr;gap:30px}}
 @media(max-width:650px){.product-details-section,.product-material-section,.product-faq-section{padding:58px 0}.product-uses-section{padding:58px 0}.product-benefit-grid,.product-material-grid{grid-template-columns:1fr}.product-benefit{min-height:0;padding:22px}.product-uses-grid{gap:24px}.product-uses-list{gap:0 14px}.detail-intro h2,.product-uses-grid h2{font-size:38px}}
+
+
+/* VeteRo interactive layer explorer */
+.vr-explorer{padding:94px 0 100px;background:#eeeae1;border-top:1px solid var(--line);overflow:clip}
+.vr-explorer-heading{max-width:720px;margin:0 auto 48px;text-align:center}
+.vr-explorer-heading h2{font:500 clamp(36px,4.6vw,54px)/1.08 var(--serif);letter-spacing:-.05em;margin:13px 0 15px}
+.vr-explorer-heading p{max-width:610px;margin:0 auto;color:var(--muted);font-size:14px}
+.vr-explorer-layout{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(290px,.85fr);gap:clamp(34px,6vw,90px);align-items:center}
+.vr-stage-wrap{min-width:0}
+.vr-stage{height:500px;position:relative;display:grid;place-items:center;isolation:isolate;perspective:1100px}
+.vr-stage:before{content:"";position:absolute;width:76%;height:28%;bottom:16%;left:12%;border-radius:50%;background:rgba(48,48,38,.11);filter:blur(28px);z-index:-1}
+.vr-stage-kicker,.vr-stage-caption{position:absolute;left:8px;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:#7a7c70}
+.vr-stage-kicker{top:12px}.vr-stage-caption{bottom:8px;letter-spacing:.06em;text-transform:none}
+.vr-layer{position:absolute;width:min(78%,520px);height:150px;border-radius:48% 42% 45% 38% / 48% 44% 42% 45%;transform-style:preserve-3d;will-change:transform;box-shadow:0 20px 34px rgba(49,48,38,.12)}
+.vr-layer-cover{z-index:3;background:linear-gradient(145deg,#e9dfce 0%,#d9cbb6 52%,#cbbba4 100%);border:1px solid rgba(115,98,72,.25);transform:translateY(-28px) rotate(-5deg)}
+.vr-layer-cover:before,.vr-layer-inner:before{content:"";position:absolute;inset:10px 13px;border:1px solid rgba(104,91,69,.23);border-radius:inherit}
+.vr-cover-seams{position:absolute;inset:18px 24px;border-top:1px solid rgba(113,98,77,.18);border-bottom:1px solid rgba(113,98,77,.18);border-radius:50%}
+.vr-cover-ties{position:absolute;left:-30px;right:-30px;top:50%;display:flex;justify-content:space-between}
+.vr-cover-ties i{display:block;width:52px;height:13px;background:#89927c;border-radius:3px;box-shadow:0 2px 3px #766f5f55}
+.vr-layer-inner{z-index:2;background:linear-gradient(145deg,#f3eee4,#ded5c5);border:1px solid #c9c0b1;transform:translateY(0) rotate(1deg);box-shadow:0 16px 28px rgba(49,48,38,.1)}
+.vr-channel-lines{position:absolute;inset:13px 23px;display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+.vr-channel-lines i{border-left:1px solid rgba(128,113,91,.35);border-right:1px solid rgba(255,255,255,.55);border-radius:50%}
+.vr-layer-grain{z-index:1;background:linear-gradient(145deg,#c8b18a,#a98e62);border:1px solid #a68e6a;transform:translateY(28px) rotate(5deg);overflow:hidden}
+.vr-grain-bed{position:absolute;inset:12px 19px;display:grid;grid-template-columns:repeat(10,1fr);grid-template-rows:repeat(3,1fr);gap:7px;align-items:center;justify-items:center;transform:rotate(-4deg)}
+.vr-grain-bed span{width:15px;height:6px;border-radius:70% 40% 70% 40%;background:#ead6a9;box-shadow:inset -2px -1px 2px #8f754c55,0 1px 1px #fff7}
+.vr-grain-bed span:nth-child(3n){transform:rotate(38deg);background:#ddc18d}.vr-grain-bed span:nth-child(3n+1){transform:rotate(-28deg)}
+.vr-layer-button{display:flex;align-items:center;gap:10px;border:1px solid #d5cfc2;background:rgba(255,255,255,.35);padding:11px 15px;font-size:12px;color:#55594f;cursor:pointer;transition:background .2s,border-color .2s,transform .2s}
+.vr-layer-button span{font-size:9px;letter-spacing:.12em;color:#898c7e}
+.vr-layer-button:hover{transform:translateY(-2px);border-color:#9ba38f}
+.vr-layer-button.is-active{background:#344337;color:#fff;border-color:#344337}
+.vr-layer-button.is-active span{color:#d9dfd2}
+.vr-stage-controls{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-top:8px}
+.vr-scroll-hint{text-align:center;font-size:10px;letter-spacing:.06em;color:#777b70;margin:16px 0 0}
+.vr-scroll-hint span{font-size:15px;margin-right:5px}
+.vr-info{background:rgba(255,255,255,.55);border:1px solid rgba(52,67,55,.1);padding:clamp(26px,4vw,44px);min-height:360px}
+.vr-info-index{font-size:10px;letter-spacing:.16em;color:#8a8d80;margin-bottom:32px}
+.vr-info>.eyebrow{display:block;margin-bottom:9px}
+.vr-info h3{font:500 clamp(34px,4vw,46px)/1.08 var(--serif);letter-spacing:-.04em;margin:0 0 15px}
+.vr-info>p{font-size:14px;line-height:1.75;color:var(--muted);margin:0 0 26px}
+.vr-facts{border-top:1px solid var(--line)}
+.vr-facts>div{display:grid;grid-template-columns:100px 1fr;gap:12px;padding:12px 0;border-bottom:1px solid var(--line)}
+.vr-facts span{font-size:10px;color:#85887d;text-transform:uppercase;letter-spacing:.08em}
+.vr-facts strong{font-size:12px;font-weight:600}
+.vr-info-nav{display:flex;justify-content:space-between;gap:14px;margin-top:28px}
+.vr-info-nav button{border:0;background:transparent;padding:8px 0;font-size:11px;font-weight:600;cursor:pointer;color:var(--green)}
+.vr-info-nav button:disabled{opacity:.3;cursor:default}
+.vr-no-script{font-size:13px;color:var(--muted);text-align:center}
+.vr-explorer .vr-layer.is-selected{filter:drop-shadow(0 10px 14px rgba(52,67,55,.2))}
+@media(max-width:850px){.vr-explorer{padding:70px 0}.vr-explorer-layout{grid-template-columns:1fr;gap:28px}.vr-stage{height:390px}.vr-info{min-height:0}.vr-info-index{margin-bottom:20px}}
+@media(max-width:650px){.vr-explorer{padding:58px 0}.vr-explorer-heading{margin-bottom:28px}.vr-stage{height:300px}.vr-layer{height:104px;width:78%}.vr-cover-ties i{width:36px;height:10px}.vr-grain-bed{gap:4px}.vr-grain-bed span{width:10px;height:4px}.vr-stage-caption{font-size:8px}.vr-stage-controls{display:grid;grid-template-columns:1fr 1fr 1fr;gap:5px}.vr-layer-button{justify-content:center;padding:10px 5px;font-size:10px;gap:5px}.vr-info{padding:24px 20px}.vr-info-nav{margin-top:20px}}
+@media(prefers-reduced-motion:reduce){.vr-layer,.vr-layer-button{transition:none!important}}
