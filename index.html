@@ -24,35 +24,51 @@
 <section class="vr-explorer" id="utforska-kudden" aria-labelledby="vr-explorer-title">
   <div class="wrap">
     <div class="vr-explorer-heading">
-      <span class="eyebrow">Utforska konstruktionen</span>
-      <h2 id="vr-explorer-title">Tre lager. En genomtänkt helhet.</h2>
-      <p>Utforska ytterfodralet, innerkudden och vetefyllningen. Bilderna visar VeteRos olika delar.</p>
+      <span class="eyebrow">Lär känna VeteRo</span>
+      <h2 id="vr-explorer-title">Tre delar. En genomtänkt kudde.</h2>
+      <p>Tryck på ett lager för att se hur VeteRo är uppbyggd och vad de olika delarna gör.</p>
     </div>
     <div class="vr-explorer-layout">
-      <div class="vr-stage-wrap">
-        <div class="vr-stage" data-vr-stage>
-          <div class="vr-stage-kicker">VeteRo · produktens delar</div>
-          <img class="vr-stage-photo" data-vr-photo src="https://static.wixstatic.com/media/f8d78f_65e624ea5bc04388900ea530c4e6e651~mv2.jpg" alt="Beige ytterfodral med knytband" loading="lazy" decoding="async">
-          <div class="vr-stage-caption" data-vr-caption>01 / 03 · Ytterfodral</div>
+      <div class="vr-visual-panel">
+        <div class="vr-explorer-scene" data-vr-stage data-active-layer="cover" aria-label="Välj ett lager i VeteRo">
+          <button type="button" class="vr-piece is-active" data-vr-select="cover" aria-pressed="true" aria-label="Visa information om ytterfodralet">
+            <span class="vr-piece-index">01</span>
+            <span class="vr-piece-image"><img src="https://static.wixstatic.com/media/f8d78f_65e624ea5bc04388900ea530c4e6e651~mv2.jpg" alt="Beige ytterfodral med salviagröna knytband" loading="lazy" decoding="async"></span>
+            <span class="vr-piece-label"><strong>Ytterfodral</strong><small>Bomullstyg · knytband</small></span>
+            <span class="vr-piece-selected">Vald del</span>
+          </button>
+          <button type="button" class="vr-piece" data-vr-select="inner" aria-pressed="false" aria-label="Visa information om innerkudden">
+            <span class="vr-piece-index">02</span>
+            <span class="vr-piece-image"><img src="https://static.wixstatic.com/media/f8d78f_01e40ff17a474e94b4c10228e103fcfb~mv2.jpg" alt="Svart innerkudde med sydda fack" loading="lazy" decoding="async"></span>
+            <span class="vr-piece-label"><strong>Innerkudde</strong><small>Separata sydda fack</small></span>
+            <span class="vr-piece-selected">Vald del</span>
+          </button>
+          <button type="button" class="vr-piece" data-vr-select="wheat" aria-pressed="false" aria-label="Visa information om vetefyllningen">
+            <span class="vr-piece-index">03</span>
+            <span class="vr-piece-image"><img src="https://static.wixstatic.com/media/f8d78f_f0cae0d11c2f48ba915a29956e260f4b~mv2.png" alt="Vetekorn som används i VeteRo" loading="lazy" decoding="async"></span>
+            <span class="vr-piece-label"><strong>Vetefyllning</strong><small>Vete från Trädet</small></span>
+            <span class="vr-piece-selected">Vald del</span>
+          </button>
         </div>
-        <div class="vr-stage-controls" aria-label="Välj vilken del du vill utforska">
-          <button type="button" class="vr-layer-button is-active" data-vr-select="cover" aria-pressed="true"><span>01</span> Ytterfodral</button>
-          <button type="button" class="vr-layer-button" data-vr-select="inner" aria-pressed="false"><span>02</span> Innerkudde</button>
-          <button type="button" class="vr-layer-button" data-vr-select="wheat" aria-pressed="false"><span>03</span> Vetefyllning</button>
-        </div>
+        <p class="vr-instruction"><span aria-hidden="true">✧</span> Välj ett lager för att läsa mer</p>
       </div>
-      <div class="vr-info" aria-live="polite" aria-atomic="true">
-        <div class="vr-info-index" data-vr-index>01 / 03</div>
-        <span class="eyebrow" data-vr-eyebrow>Yttre lager</span>
-        <h3 data-vr-title>Ytterfodral</h3>
+      <aside class="vr-info" aria-live="polite" aria-atomic="true">
+        <div class="vr-info-top">
+          <span class="vr-info-index" data-vr-index>01 / 03</span>
+          <span class="eyebrow" data-vr-eyebrow>Yttre lager</span>
+        </div>
+        <h3 data-vr-title>Ytterfodralet</h3>
         <p data-vr-description>Det beige ytterfodralet omsluter innerkudden och har knytband som gör att VeteRo kan fästas där den används.</p>
         <div class="vr-facts" data-vr-facts>
           <div><span>Material</span><strong>Bomullstyg</strong></div>
           <div><span>Ursprung</span><strong>Spillmaterial från Andersson &amp; Hjalmarsson</strong></div>
           <div><span>Detalj</span><strong>Knytband</strong></div>
         </div>
-        <div class="vr-info-nav"><button type="button" class="vr-prev" data-vr-prev disabled>← Föregående</button><button type="button" class="vr-next" data-vr-next>Nästa del →</button></div>
-      </div>
+        <div class="vr-info-nav">
+          <button type="button" class="vr-prev" data-vr-prev disabled>← Föregående</button>
+          <button type="button" class="vr-next" data-vr-next>Nästa del →</button>
+        </div>
+      </aside>
     </div>
   </div>
 </section>
