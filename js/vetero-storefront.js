@@ -61,6 +61,16 @@ function closeLightbox() {
   document.body.style.overflow = "";
 }
 
+const galleryThumbs = document.querySelectorAll("[data-gallery-thumb]");
+galleryThumbs.forEach(button => {
+  button.addEventListener("click", () => {
+    if (!mainImage) return;
+    mainImage.src = button.dataset.image;
+    mainImage.alt = button.dataset.alt || "VeteRo produktbild";
+    galleryThumbs.forEach(thumb => thumb.setAttribute("aria-pressed", String(thumb === button)));
+  });
+});
+
 lightboxOpen?.addEventListener("click", () => {
   if (!mainImage?.src || !lightboxImage || !lightbox) return;
   lightboxImage.src = mainImage.src;
