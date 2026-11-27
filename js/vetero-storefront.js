@@ -26,7 +26,7 @@ window.addEventListener("scroll", () => {
   if (scrollTick) return;
   scrollTick = true;
   requestAnimationFrame(() => {
-    header?.classList.toggle("is-scrolled", window.scrollY > 12);
+    header?.classList.toggle("is-scrolled", window.VETERO_EFFECTS?.headerShrink !== false && window.scrollY > 12);
     scrollTick = false;
   });
 }, { passive: true });
