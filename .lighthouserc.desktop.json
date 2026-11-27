@@ -1,0 +1,18 @@
+{
+  "ci": {
+    "collect": {
+      "url": [
+        "https://veterouf.com/",
+        "https://veterouf.com/product.html"
+      ],
+      "numberOfRuns": 3,
+      "settings": {
+        "preset": "desktop"
+      }
+    },
+    "upload": {
+      "target": "filesystem",
+      "outputDir": "./lhci-reports/desktop"
+    }
+  }
+}

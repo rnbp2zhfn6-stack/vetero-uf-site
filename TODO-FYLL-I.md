@@ -18,7 +18,7 @@ Okända uppgifter har inte fyllts i på chans. Uppdatera dem när ni har kontrol
 - [ ] Bekräfta uppvärmningsinstruktioner för just VeteRo: mikro, effekt, tid, eventuell paus och eventuella krav på vattenglas.
 - [ ] Bekräfta om ugn får användas och i så fall exakt metod.
 - [ ] Bekräfta hur kudden ska förberedas för kall användning och om frysförvaring är tillåten.
-- [ ] Bekräfta tvättråd för ytterfodralet. Det är separerbart från innerkudden, men tvättinstruktion är inte bekräftad.
+- [ ] Bekräfta tvättråd för örngottet. Det är separerbart från innerkudden, men tvättinstruktion är inte bekräftad.
 - [ ] Bekräfta råd om lukt, förvaring och livslängd om ni vill svara på dessa frågor.
 - [ ] Låt en kunnig vuxen/handledare läsa säkerhetsinformationen och bruksanvisningen innan den publiceras som slutlig.
 
@@ -40,7 +40,8 @@ Okända uppgifter har inte fyllts i på chans. Uppdatera dem när ni har kontrol
 ## Teknisk publicering
 - [ ] Kontrollera att senaste commit har publicerats av GitHub Pages.
 - [ ] Testa webbplatsen på 360, 390, 768 och 1280 px.
-- [ ] Kör Lighthouse på startsida och produktsida.
+- [x] Lägg till Lighthouse CI för startsida och produktsida i mobil- och desktopläge.
+- [ ] Kör första Lighthouse-kontrollen och granska rapporterna.
 - [ ] Validera HTML, JSON-LD och länkar efter publicering.
 
 ## Kodplatser
@@ -49,10 +50,10 @@ Okända uppgifter har inte fyllts i på chans. Uppdatera dem när ni har kontrol
 
 
 ## Interaktioner – del 2
-- [ ] Ta fram separata, transparenta bilder av hela kudden, ytterfodralet, innerkudden och knytbanden innan en mer realistisk lokal tygdeformation byggs.
+- [ ] Ta fram nya verkliga fotovinklar och detaljbilder på VeteRo om en mer utförlig produktvisning ska byggas.
 - [ ] Ta närbilder på tyg och sömmar om en trovärdig materialtextur önskas.
 - [ ] Testa knyt/lossa-illustrationen och hero-rörelsen med riktiga användare på mobil och desktop.
-- [ ] Kör Lighthouse på startsida och produktsida före och efter att arbetsgrenen förhandsgranskats.
+- [ ] Kör Lighthouse-flödet i GitHub Actions och granska mobil- och desktoprapporterna.
 - [ ] Kontrollera mobilens köpfält med tangentbord öppet, skärmläsare och iOS Safari.
 - [ ] Verifiera sticky-galleri på låg skärm och med webbläsarzoom.
 - [ ] Testa reducerad rörelse, JavaScript avstängt och webbläsare utan IntersectionObserver.

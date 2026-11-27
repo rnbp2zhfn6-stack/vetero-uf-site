@@ -67,3 +67,13 @@
 - Ingen bildkonvertering till AVIF/WebP.
 - Ingen extern analyskod.
 - Ingen fullständig Lighthouse-, enhets- eller skärmläsartestning.
+
+
+## 27 november 2026 – teknisk genomgång och kvalitetskontroll
+
+- Rättat språkfel i material- och produkttexter.
+- Städat produktnamn i bildalternativ, social metadata och bildsitemap.
+- Rensat bort ett oanvänt JavaScript-skript för en äldre produktutforskare från huvudgrenen.
+- Lagt till Lighthouse CI för mobil och desktop med rapporter som sparas i GitHub Actions.
+- Inga tunga frontend- eller animationsramverk installerades; den statiska webbplatsen behålls.
+- Första Lighthouse-mätningen är ännu inte körd och inga poäng påstås.

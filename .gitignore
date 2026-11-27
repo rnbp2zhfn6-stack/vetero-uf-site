@@ -1,0 +1,3 @@
+# Local Lighthouse CI output
+lhci-reports/
+.lighthouseci/
