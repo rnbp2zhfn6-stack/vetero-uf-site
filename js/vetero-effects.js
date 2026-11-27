@@ -151,8 +151,12 @@ if (isEnabled("grainDemo")) {
     function makeGrains(group, type) {
       if (!group) return;
 
-      group.replaceChildren();
+      const fragment = document.createDocumentFragment();
+      const createdParticles = [];
+      const columnBounds = [[24, 60], [60, 109], [109, 158], [158, 207], [207, 256], [256, 296]];
+      const rowBounds = [[20, 37], [37, 59], [59, 81], [81, 103], [103, 125]];
       const count = type === "divided" ? 30 : 40;
+
       for (let i = 0; i < count; i += 1) {
         const column = type === "divided" ? i % 6 : Math.floor(i / 5);
         const row = type === "divided" ? Math.floor(i / 6) : i % 5;
@@ -166,14 +170,29 @@ if (isEnabled("grainDemo")) {
           : 27 + seedB * 82;
 
         const circle = document.createElementNS(namespace, "circle");
+        circle.setAttribute("cx", String(baseX));
+        circle.setAttribute("cy", String(baseY));
         circle.setAttribute("r", String(3 + (i % 3) * 0.35));
         circle.setAttribute("fill", i % 3 === 0 ? "#b88a4e" : "#d3b47d");
         circle.setAttribute("stroke", "#785c38");
         circle.setAttribute("stroke-width", "0.55");
-        group.appendChild(circle);
+        fragment.appendChild(circle);
 
-        particles[type].push({ node: circle, x: baseX, y: baseY, seedA, seedB });
+        const bounds = type === "divided" ? columnBounds[column] : [18, 302];
+        createdParticles.push({
+          node: circle,
+          x: baseX,
+          y: baseY,
+          minX: bounds[0] + 5,
+          maxX: bounds[1] - 5,
+          seedA,
+          seedB
+        });
       }
+
+      // Ersätt fallback-kornen först när alla nya korn är färdigskapade.
+      group.replaceChildren(fragment);
+      particles[type].push(...createdParticles);
     }
 
     function setTilt(rawValue) {
@@ -191,8 +210,10 @@ if (isEnabled("grainDemo")) {
       });
 
       particles.divided.forEach(particle => {
-        const x = particle.x + direction * progress * (2 + particle.seedA * 2);
-        particle.node.setAttribute("cx", String(clamp(x, 18, 302)));
+        // Kornen rör sig mot den lägre sidan inom sitt eget sydda fack.
+        const edge = direction < 0 ? particle.minX : particle.maxX;
+        const x = particle.x + (edge - particle.x) * progress * 0.58;
+        particle.node.setAttribute("cx", String(clamp(x, particle.minX, particle.maxX)));
         particle.node.setAttribute("cy", String(particle.y));
       });
 
