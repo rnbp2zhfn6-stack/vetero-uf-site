@@ -83,3 +83,15 @@
 @media(max-width:850px){.vr-explorer{padding:70px 0}.vr-explorer-layout{grid-template-columns:1fr;gap:28px}.vr-stage{height:390px}.vr-info{min-height:0}.vr-info-index{margin-bottom:20px}}
 @media(max-width:650px){.vr-explorer{padding:58px 0}.vr-explorer-heading{margin-bottom:28px}.vr-stage{height:300px}.vr-layer{height:104px;width:78%}.vr-cover-ties i{width:36px;height:10px}.vr-grain-bed{gap:4px}.vr-grain-bed span{width:10px;height:4px}.vr-stage-caption{font-size:8px}.vr-stage-controls{display:grid;grid-template-columns:1fr 1fr 1fr;gap:5px}.vr-layer-button{justify-content:center;padding:10px 5px;font-size:10px;gap:5px}.vr-info{padding:24px 20px}.vr-info-nav{margin-top:20px}}
 @media(prefers-reduced-motion:reduce){.vr-layer,.vr-layer-button{transition:none!important}}
+
+
+/* VeteRo photo-based product explorer */
+.vr-stage{height:500px;position:relative;display:grid;place-items:center;overflow:hidden;background:#e8e4da;border:1px solid rgba(52,67,55,.1)}
+.vr-stage:before{display:none}
+.vr-stage-photo{width:100%;height:100%;object-fit:contain;padding:28px 42px;transition:opacity .22s ease,transform .3s ease;opacity:1}
+.vr-stage-photo.is-changing{opacity:0;transform:translateY(8px)}
+.vr-stage-caption{left:18px;bottom:15px;padding:7px 10px;background:rgba(248,246,240,.86);color:#4d554b;font-size:10px;letter-spacing:.08em}
+.vr-layer-button{min-width:132px}
+.vr-info{min-height:360px}
+@media(max-width:850px){.vr-stage{height:440px}.vr-stage-photo{padding:24px 34px}}
+@media(max-width:650px){.vr-stage{height:340px}.vr-stage-photo{padding:16px 18px}.vr-stage-controls{display:grid;grid-template-columns:1fr 1fr}.vr-layer-button{min-width:0;padding:12px 8px;font-size:11px}}
