@@ -172,7 +172,7 @@ if (isEnabled("grainDemo")) {
         circle.setAttribute("stroke-width", "0.55");
         group.appendChild(circle);
 
-        particles[type].push({ node: circle, x: baseX, y: baseY, channel, seedA, seedB });
+        particles[type].push({ node: circle, x: baseX, y: baseY, seedA, seedB });
       }
     }
 
