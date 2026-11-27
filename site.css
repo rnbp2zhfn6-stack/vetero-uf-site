@@ -826,3 +826,89 @@ html.no-js .hero-image[data-pillow-stage]{cursor:default}
   .hero-image[data-pillow-stage] img[data-home-image],
   .band-knot,.band-strap,.band-toggle{transition:none!important}
 }
+
+
+/* One-piece interactive VeteRo cushion with clickable information hotspots */
+.pillow-experience{position:relative;display:grid;gap:12px}
+.pillow-scene{
+  position:relative;min-height:370px;overflow:hidden;isolation:isolate;
+  border:1px solid rgba(82,96,74,.12);border-radius:26px;
+  background:
+    radial-gradient(ellipse at 18% 18%,rgba(230,197,164,.48),transparent 30%),
+    radial-gradient(ellipse at 88% 78%,rgba(192,204,179,.58),transparent 34%),
+    radial-gradient(ellipse at 50% 45%,rgba(255,255,255,.82),transparent 64%),
+    linear-gradient(140deg,#faf7ef,#e9eee4 58%,#f6ebe7);
+  box-shadow:0 18px 48px rgba(54,63,48,.07)
+}
+.pillow-scene:before{
+  content:"";position:absolute;z-index:0;inset:0;pointer-events:none;
+  background-image:url("./vetero-wheat-sprig.svg");background-repeat:no-repeat;
+  background-size:150px auto;background-position:right -9px bottom -18px;opacity:.22
+}
+.pillow-scene-heading{
+  position:absolute;z-index:2;top:20px;left:22px;right:22px;
+  display:flex;align-items:center;justify-content:space-between;pointer-events:none
+}
+.pillow-scene-heading .eyebrow{margin:0;color:#607157;font-size:10px}
+.pillow-scene-size{
+  padding:6px 10px;border:1px solid rgba(82,96,74,.14);border-radius:999px;
+  background:rgba(255,253,248,.7);color:#66755f;font-size:10px
+}
+.pillow-render{
+  position:absolute;z-index:1;left:0;top:5%;width:100%;height:88%;
+  overflow:visible;animation:pillow-float 6.5s ease-in-out infinite
+}
+.pillow-hotspot{
+  position:absolute;z-index:3;left:var(--hotspot-x);top:var(--hotspot-y);
+  display:grid;place-items:center;width:39px;height:39px;padding:0;
+  border:1px solid rgba(91,111,81,.5);border-radius:50%;
+  background:rgba(255,254,249,.95);color:#52674a;
+  box-shadow:0 3px 12px rgba(52,65,48,.13),0 0 0 5px rgba(255,255,255,.38);
+  cursor:pointer;transform:translate(-50%,-50%);
+  transition:background .2s ease,color .2s ease,box-shadow .2s ease,scale .2s ease
+}
+.pillow-hotspot span{display:block;margin-top:-2px;font-family:Arial,sans-serif;font-size:26px;font-weight:400;line-height:1}
+.pillow-hotspot:after{
+  content:"";position:absolute;inset:-6px;border:1px solid rgba(108,128,96,.34);
+  border-radius:50%;animation:hotspot-pulse 2.7s ease-out infinite
+}
+.pillow-hotspot:hover,.pillow-hotspot:focus-visible,.pillow-hotspot.is-active{
+  background:#64785c;color:#fff;box-shadow:0 5px 16px rgba(52,65,48,.2),0 0 0 5px rgba(255,255,255,.55);scale:1.06
+}
+.pillow-hotspot:focus-visible{outline:3px solid #aebc9e;outline-offset:5px}
+.pillow-hotspot.is-active:after{animation:none;opacity:0}
+.pillow-scene-hint{
+  position:absolute;z-index:2;left:50%;bottom:15px;width:max-content;max-width:calc(100% - 28px);
+  margin:0;padding:8px 13px;border:1px solid rgba(255,255,255,.68);border-radius:999px;
+  background:rgba(255,253,248,.8);color:#63715c;font-size:10px;line-height:1.35;
+  text-align:center;transform:translateX(-50%);backdrop-filter:blur(8px);pointer-events:none
+}
+.pillow-scene-hint span{margin-right:4px;color:#9b9b70}
+.pillow-hotspot-info{
+  min-height:104px;padding:16px 19px 17px;border:1px solid rgba(82,96,74,.11);
+  border-radius:18px;background:linear-gradient(135deg,#fcfaf5,#f1f2eb)
+}
+.pillow-info-eyebrow{
+  display:block;margin-bottom:5px;color:#78856d;font-size:9px;font-weight:700;
+  letter-spacing:.12em;text-transform:uppercase
+}
+.pillow-hotspot-info h3{margin:0;color:var(--green);font-family:inherit;font-size:16px;font-weight:600;line-height:1.3}
+.pillow-hotspot-info p{margin:6px 0 0;color:var(--muted);font-size:12px;line-height:1.55}
+@keyframes pillow-float{0%,100%{transform:translateY(0) rotate(-.15deg)}50%{transform:translateY(-5px) rotate(.15deg)}}
+@keyframes hotspot-pulse{0%{transform:scale(.88);opacity:.7}75%,100%{transform:scale(1.34);opacity:0}}
+@media (max-width:760px){
+  .pillow-scene{min-height:320px;border-radius:20px}
+  .pillow-scene-heading{top:14px;left:15px;right:15px}
+  .pillow-scene:before{background-size:112px auto}
+  .pillow-hotspot{width:34px;height:34px}
+  .pillow-hotspot span{font-size:23px}
+  .pillow-hotspot-info{padding:14px 15px;min-height:100px}
+  .pillow-hotspot-info h3{font-size:15px}
+  .pillow-hotspot-info p{font-size:11px}
+  .pillow-scene-hint{bottom:11px;font-size:9px}
+}
+@media (prefers-reduced-motion:reduce){
+  .pillow-render{animation:none!important}
+  .pillow-hotspot:after{animation:none!important}
+  .pillow-hotspot{transition:none!important}
+}
