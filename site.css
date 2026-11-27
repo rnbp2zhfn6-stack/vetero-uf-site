@@ -95,3 +95,10 @@
 .vr-info{min-height:360px}
 @media(max-width:850px){.vr-stage{height:440px}.vr-stage-photo{padding:24px 34px}}
 @media(max-width:650px){.vr-stage{height:340px}.vr-stage-photo{padding:16px 18px}.vr-stage-controls{display:grid;grid-template-columns:1fr 1fr}.vr-layer-button{min-width:0;padding:12px 8px;font-size:11px}}
+
+/* Keep the full-length real product visible in homepage photography */
+.hero-image img[data-home-image],
+.product-strip-image img[data-home-image-secondary]{
+  object-fit:contain;
+  background:#e8e4da;
+}
