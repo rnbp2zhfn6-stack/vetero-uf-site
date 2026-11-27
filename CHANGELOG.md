@@ -1,3 +1,8 @@
+## 27 november 2026 – korrigerad illustration av innerkudden
+- Korndemon visar nu sydda avdelningar i både vertikal och horisontell riktning.
+- Kornens placering följer ett rutnät av separata fack i VeteRo-illustrationen.
+- Ändringen gäller den schematiska illustrationen; den gör inga nya påståenden om produktens exakta fackmått.
+
 # Ändringslogg
 
 ## 27 november 2026 – del 2, försiktig interaktion
