@@ -35,6 +35,7 @@ if (root) {
     }
   ];
   let selected = 0;
+  let imageSwapTimer = null;
 
   function setSelected(value) {
     selected = Math.max(0, Math.min(layers.length - 1, value));
@@ -44,6 +45,7 @@ if (root) {
       button.classList.toggle("is-active", active);
       button.setAttribute("aria-pressed", String(active));
     });
+    window.clearTimeout(imageSwapTimer);
     photo.classList.add("is-changing");
     const update = () => {
       photo.src = item.image;
@@ -53,7 +55,7 @@ if (root) {
     };
     if (reduceMotion) update();
     else {
-      window.setTimeout(update, 140);
+      imageSwapTimer = window.setTimeout(update, 140);
     }
     index.textContent = String(selected + 1).padStart(2, "0") + " / 02";
     eyebrow.textContent = item.eyebrow;
