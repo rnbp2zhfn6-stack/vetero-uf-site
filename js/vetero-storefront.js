@@ -4,32 +4,56 @@ const header = $("#site-header");
 const nav = $("#main-nav");
 const menuToggle = $("#menu-toggle");
 
+function setMenuOpen(open, restoreFocus = false) {
+  if (!nav || !menuToggle) return;
+  nav.classList.toggle("is-open", open);
+  menuToggle.setAttribute("aria-expanded", String(open));
+  menuToggle.setAttribute("aria-label", open ? "Stäng meny" : "Öppna meny");
+  if (restoreFocus && !open) menuToggle.focus();
+}
+
 if (menuToggle && nav) {
   menuToggle.addEventListener("click", () => {
-    const open = nav.classList.toggle("is-open");
-    menuToggle.setAttribute("aria-expanded", String(open));
-    menuToggle.setAttribute("aria-label", open ? "Stäng meny" : "Öppna meny");
+    setMenuOpen(menuToggle.getAttribute("aria-expanded") !== "true");
   });
 
   nav.querySelectorAll("a").forEach(link => {
-    link.addEventListener("click", () => {
-      nav.classList.remove("is-open");
-      menuToggle.setAttribute("aria-expanded", "false");
-      menuToggle.setAttribute("aria-label", "Öppna meny");
-      menuToggle.focus();
-    });
+    link.addEventListener("click", () => setMenuOpen(false));
+  });
+
+  document.addEventListener("keydown", event => {
+    if (event.key === "Escape" && nav.classList.contains("is-open")) {
+      setMenuOpen(false, true);
+    }
+  });
+
+  document.addEventListener("pointerdown", event => {
+    if (nav.classList.contains("is-open") && header && !header.contains(event.target)) {
+      setMenuOpen(false);
+    }
+  });
+
+  window.addEventListener("resize", () => {
+    if (window.innerWidth > 650 && nav.classList.contains("is-open")) setMenuOpen(false);
   });
 }
 
+function updateHeaderState() {
+  header?.classList.toggle(
+    "is-scrolled",
+    window.VETERO_EFFECTS?.headerShrink !== false && window.scrollY > 12
+  );
+}
 let scrollTick = false;
 window.addEventListener("scroll", () => {
   if (scrollTick) return;
   scrollTick = true;
   requestAnimationFrame(() => {
-    header?.classList.toggle("is-scrolled", window.VETERO_EFFECTS?.headerShrink !== false && window.scrollY > 12);
+    updateHeaderState();
     scrollTick = false;
   });
 }, { passive: true });
+updateHeaderState();
 
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const revealNodes = document.querySelectorAll(".reveal");
@@ -44,7 +68,7 @@ if ("IntersectionObserver" in window && !reduceMotion) {
   }, { threshold: 0.12, rootMargin: "0px 0px -28px 0px" });
 
   revealNodes.forEach((node, index) => {
-    node.style.transitionDelay = (Math.min(index % 3, 2) * 70) + "ms";
+    node.style.transitionDelay = (Math.min(index % 3, 2) * 55) + "ms";
     observer.observe(node);
   });
 } else {
@@ -67,14 +91,16 @@ function closeLightbox() {
 }
 
 const galleryThumbs = document.querySelectorAll("[data-gallery-thumb]");
-lightboxOpen && (lightboxOpen.disabled = false);
+if (lightboxOpen) lightboxOpen.disabled = false;
 galleryThumbs.forEach(button => {
   button.disabled = false;
   button.addEventListener("click", () => {
     if (!mainImage) return;
     mainImage.src = button.dataset.image;
     mainImage.alt = button.dataset.alt || "VeteRo produktbild";
-    galleryThumbs.forEach(thumb => thumb.setAttribute("aria-pressed", String(thumb === button)));
+    galleryThumbs.forEach(thumb => {
+      thumb.setAttribute("aria-pressed", String(thumb === button));
+    });
   });
 });
 
@@ -82,6 +108,7 @@ lightboxOpen?.addEventListener("click", () => {
   if (!mainImage?.src || !lightboxImage || !lightbox) return;
   previousFocus = document.activeElement;
   lightboxImage.src = mainImage.src;
+  lightboxImage.alt = mainImage.alt || "VeteRo produktbild";
   lightbox.classList.add("is-open");
   lightbox.setAttribute("aria-hidden", "false");
   document.body.style.overflow = "hidden";
