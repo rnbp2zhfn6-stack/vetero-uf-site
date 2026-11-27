@@ -620,3 +620,6 @@ html.no-js .grain-controls{display:none}
   }
   html.effects-faq-motion details[open]::details-content{height:auto;opacity:1}
 }
+
+html.no-js .pillow-controls,html.no-js .band-demo-copy button{display:none}
+.grain-demo.is-static .grain-controls{display:none}
