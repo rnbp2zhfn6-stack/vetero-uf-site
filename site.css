@@ -102,3 +102,9 @@
   object-fit:contain;
   background:#e8e4da;
 }
+
+/* Three-layer VeteRo explorer controls */
+@media(max-width:650px){
+  .vr-stage-controls{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .vr-layer-button{justify-content:center;gap:6px;white-space:nowrap}
+}
