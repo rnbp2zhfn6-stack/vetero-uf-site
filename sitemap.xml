@@ -1,7 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://veterouf.com/</loc></url>
-  <url><loc>https://veterouf.com/product.html</loc></url>
-  <url><loc>https://veterouf.com/villkor.html</loc></url>
-  <url><loc>https://veterouf.com/integritet.html</loc></url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://veterouf.com/</loc>
+    <lastmod>2026-11-27</lastmod>
+    <image:image>
+      <image:loc>https://static.wixstatic.com/media/f8d78f_65e624ea5bc04388900ea530c4e6e651~mv2.jpg</image:loc>
+      <image:title>VeteRo beige vetekudde med salviagröna knytband</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://static.wixstatic.com/media/f8d78f_01e40ff17a474e94b4c10228e103fcfb~mv2.jpg</image:loc>
+      <image:title>Svart innerkudde med sydda fack till VeteRo</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://static.wixstatic.com/media/f8d78f_f0cae0d11c2f48ba915a29956e260f4b~mv2.png</image:loc>
+      <image:title>Vetefyllning till VeteRo vetekudde</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://veterouf.com/product.html</loc>
+    <lastmod>2026-11-27</lastmod>
+    <image:image>
+      <image:loc>https://static.wixstatic.com/media/f8d78f_65e624ea5bc04388900ea530c4e6e651~mv2.jpg</image:loc>
+      <image:title>VeteRo beige vetekudde med salviagröna knytband</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://static.wixstatic.com/media/f8d78f_01e40ff17a474e94b4c10228e103fcfb~mv2.jpg</image:loc>
+      <image:title>Svart innerkudde med sydda fack till VeteRo</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://static.wixstatic.com/media/f8d78f_f0cae0d11c2f48ba915a29956e260f4b~mv2.png</image:loc>
+      <image:title>Vetefyllning till VeteRo vetekudde</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://veterouf.com/villkor.html</loc>
+  </url>
+  <url>
+    <loc>https://veterouf.com/integritet.html</loc>
+  </url>
 </urlset>
