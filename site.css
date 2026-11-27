@@ -623,3 +623,27 @@ html.no-js .grain-controls{display:none}
 
 html.no-js .pillow-controls,html.no-js .band-demo-copy button{display:none}
 .grain-demo.is-static .grain-controls{display:none}
+
+
+/* Utan JavaScript: visa navigation och innehåll, dölj bara kontroller som kräver JS. */
+@media(max-width:650px){
+  html.no-js .header-row{height:auto;min-height:66px;flex-wrap:wrap;padding:10px 0}
+  html.no-js .nav{
+    display:flex;position:static;inset:auto;width:100%;padding:10px 0 4px;
+    flex-direction:row;flex-wrap:wrap;align-items:center;gap:10px 17px;
+    border:0;background:transparent;
+  }
+  html.no-js .menu-button{display:none!important}
+}
+html.no-js .copy-email-button,
+html.no-js .gallery-thumbs,
+html.no-js .vr-info-nav,
+html.no-js .vr-instruction{display:none!important}
+html.no-js .gallery-main:disabled{opacity:1;cursor:default}
+html.no-js .vr-piece:disabled{opacity:1;cursor:default}
+html.no-js .hero-image[data-pillow-stage]{cursor:default}
+.nojs-layer-notes{
+  margin-top:24px;padding:22px;border:1px solid var(--line);border-radius:16px;background:#fbfaf6
+}
+.nojs-layer-notes h3{margin:0 0 12px;font:500 22px/1.2 var(--serif)}
+.nojs-layer-notes p{margin:8px 0;color:var(--muted);font-size:13px;line-height:1.6}
