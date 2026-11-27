@@ -18,8 +18,8 @@ if (root) {
       eyebrow: "Yttre lager",
       description: "Det beige ytterfodralet omsluter innerkudden. Knytbanden vid kortsidorna gör att VeteRo kan fästas där den används.",
       facts: [
-        ["Material", "Tyg från spillmaterial"],
-        ["Ursprung", "Spillmaterial från flera olika företag"],
+        ["Material", "Tyg av restmaterial"],
+        ["Ursprung", "Restmaterial från flera olika företag"],
         ["Detalj", "Justerbara knytband"]
       ]
     },
@@ -29,7 +29,7 @@ if (root) {
       eyebrow: "Inre lager",
       description: "Innerkudden är sydd i separata kanaler. Indelningen hjälper till att hålla vetet jämnare fördelat i kudden.",
       facts: [
-        ["Material", "Spillmaterial från Andersson & Hjalmarsson"],
+        ["Material", "Restmaterial från Andersson & Hjalmarsson"],
         ["Konstruktion", "Separata sydda fack"],
         ["Placering", "Inuti ytterfodralet"]
       ]
