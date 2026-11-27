@@ -16,6 +16,7 @@ if (menuToggle && nav) {
       nav.classList.remove("is-open");
       menuToggle.setAttribute("aria-expanded", "false");
       menuToggle.setAttribute("aria-label", "Öppna meny");
+      menuToggle.focus();
     });
   });
 }
@@ -55,10 +56,14 @@ const mainImage = $("[data-product-main]");
 const lightboxImage = $("[data-lightbox-image]");
 const lightboxOpen = $("[data-lightbox-open]");
 const lightboxClose = $("[data-lightbox-close]");
+let previousFocus = null;
 
 function closeLightbox() {
-  lightbox?.classList.remove("is-open");
+  if (!lightbox?.classList.contains("is-open")) return;
+  lightbox.classList.remove("is-open");
+  lightbox.setAttribute("aria-hidden", "true");
   document.body.style.overflow = "";
+  previousFocus?.focus();
 }
 
 const galleryThumbs = document.querySelectorAll("[data-gallery-thumb]");
@@ -73,8 +78,10 @@ galleryThumbs.forEach(button => {
 
 lightboxOpen?.addEventListener("click", () => {
   if (!mainImage?.src || !lightboxImage || !lightbox) return;
+  previousFocus = document.activeElement;
   lightboxImage.src = mainImage.src;
   lightbox.classList.add("is-open");
+  lightbox.setAttribute("aria-hidden", "false");
   document.body.style.overflow = "hidden";
   lightboxClose?.focus();
 });
@@ -85,5 +92,26 @@ lightbox?.addEventListener("click", event => {
 });
 
 document.addEventListener("keydown", event => {
-  if (event.key === "Escape") closeLightbox();
+  if (!lightbox?.classList.contains("is-open")) return;
+  if (event.key === "Escape") {
+    closeLightbox();
+    return;
+  }
+  if (event.key === "Tab") {
+    const focusable = [...lightbox.querySelectorAll("button:not([disabled]), a[href], [tabindex]:not([tabindex='-1'])")];
+    if (!focusable.length) {
+      event.preventDefault();
+      lightbox.focus();
+      return;
+    }
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault();
+      first.focus();
+    }
+  }
 });
