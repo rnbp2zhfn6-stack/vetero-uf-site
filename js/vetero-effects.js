@@ -100,7 +100,7 @@ bandToggle?.addEventListener("click", () => {
   bandToggle.textContent = knotted ? "Lossa banden" : "Knyt banden";
   bandDemo?.classList.toggle("is-knotted", knotted);
   if (bandStatus) bandStatus.textContent = knotted
-    ? "Illustrationen visar knytna band."
+    ? "Illustrationen visar knutna band."
     : "Illustrationen visar lösa band.";
 });
 
