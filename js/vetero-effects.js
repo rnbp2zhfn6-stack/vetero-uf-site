@@ -16,80 +16,103 @@ if (!isEnabled("grainDemo")) {
 if (isEnabled("stickyGallery")) document.documentElement.classList.add("effects-sticky-gallery");
 if (isEnabled("faqMotion") && !reduceMotion) document.documentElement.classList.add("effects-faq-motion");
 
-/* 1. Lätt 2.5D-rörelse på den befintliga produktbilden.
-   Hela fotot rör sig mycket lite. Det är inte en fysisk tygdeformation. */
+/* 1. Diskret, tillgänglig rörelse på den riktiga produktbilden.
+   Bilden vrids svagt med pekaren eller vid svep. Den byter inte vinkel eller innehåll. */
 if (isEnabled("heroPillow")) {
   const stage = document.querySelector("[data-pillow-stage]");
-  const pressButton = document.querySelector("[data-pillow-press]");
   const resetButton = document.querySelector("[data-pillow-reset]");
 
   if (stage) {
     let activePointer = null;
-    let pressTimer = 0;
+    let pointerStart = null;
+    let keyboardRotation = { x: 0, y: 0 };
+
+    const clamp = (value, min, max) => Math.max(min, Math.min(max, value));
+
+    const setRotation = (x, y, translateX = 0, translateY = 0) => {
+      stage.style.setProperty("--pillow-x", translateX + "px");
+      stage.style.setProperty("--pillow-y", translateY + "px");
+      stage.style.setProperty("--pillow-rotate-x", x + "deg");
+      stage.style.setProperty("--pillow-rotate-y", y + "deg");
+    };
 
     const resetStage = () => {
       activePointer = null;
+      pointerStart = null;
+      keyboardRotation = { x: 0, y: 0 };
       stage.classList.remove("is-pressed", "is-dragging");
-      stage.style.setProperty("--pillow-x", "0px");
-      stage.style.setProperty("--pillow-y", "0px");
-      stage.style.setProperty("--pillow-rotate-x", "0deg");
-      stage.style.setProperty("--pillow-rotate-y", "0deg");
-    };
-
-    const pressStage = () => {
-      window.clearTimeout(pressTimer);
-      stage.classList.add("is-pressed");
-      pressTimer = window.setTimeout(() => {
-        stage.classList.remove("is-pressed");
-      }, reduceMotion ? 120 : 320);
+      setRotation(0, 0);
     };
 
     stage.addEventListener("pointerdown", event => {
-      if (!event.isPrimary || (event.pointerType === "mouse" && event.button !== 0)) return;
+      if (reduceMotion || !event.isPrimary || (event.pointerType === "mouse" && event.button !== 0)) return;
       activePointer = event.pointerId;
-      stage.classList.add("is-pressed");
-      if (event.pointerType === "mouse") stage.classList.add("is-dragging");
+      pointerStart = { x: event.clientX, y: event.clientY };
+      stage.classList.add("is-pressed", "is-dragging");
+      try { stage.setPointerCapture(event.pointerId); } catch {}
     });
 
     stage.addEventListener("pointermove", event => {
       if (reduceMotion) return;
-      if (event.pointerType === "touch" && activePointer !== event.pointerId) return;
-      if (event.pointerType === "mouse" && !finePointer) return;
-
       const rect = stage.getBoundingClientRect();
       if (!rect.width || !rect.height) return;
 
-      const x = (event.clientX - rect.left) / rect.width - 0.5;
-      const y = (event.clientY - rect.top) / rect.height - 0.5;
+      if (activePointer === event.pointerId && pointerStart) {
+        const dx = event.clientX - pointerStart.x;
+        const dy = event.clientY - pointerStart.y;
+        const rotateY = clamp((dx / rect.width) * 9, -4.5, 4.5);
+        const rotateX = clamp((-dy / rect.height) * 7, -3.5, 3.5);
+        setRotation(rotateX, rotateY, clamp(dx * 0.035, -3, 3), clamp(dy * 0.025, -2, 2));
+        return;
+      }
 
-      if (activePointer === event.pointerId) {
-        stage.style.setProperty("--pillow-x", Math.max(-8, Math.min(8, x * 16)) + "px");
-        stage.style.setProperty("--pillow-y", Math.max(-6, Math.min(6, y * 12)) + "px");
-      } else if (finePointer) {
-        stage.style.setProperty("--pillow-rotate-x", (-y * 2.4) + "deg");
-        stage.style.setProperty("--pillow-rotate-y", (x * 2.4) + "deg");
+      if (finePointer && activePointer === null) {
+        const x = (event.clientX - rect.left) / rect.width - 0.5;
+        const y = (event.clientY - rect.top) / rect.height - 0.5;
+        setRotation(-y * 2.2, x * 2.4);
       }
     });
 
-    ["pointerup", "pointercancel", "lostpointercapture", "pointerleave"].forEach(type => {
-      stage.addEventListener(type, () => {
-        if (type === "pointerleave" && activePointer !== null) return;
-        resetStage();
-      });
-    });
-    window.addEventListener("pointerup", resetStage);
+    const finishPointer = event => {
+      if (activePointer === null || (event && event.pointerId !== activePointer)) return;
+      activePointer = null;
+      pointerStart = null;
+      stage.classList.remove("is-pressed", "is-dragging");
+      setRotation(0, 0);
+    };
 
-    pressButton?.addEventListener("click", pressStage);
-    resetButton?.addEventListener("click", () => {
-      window.clearTimeout(pressTimer);
-      resetStage();
+    stage.addEventListener("pointerup", finishPointer);
+    stage.addEventListener("pointercancel", finishPointer);
+    stage.addEventListener("lostpointercapture", finishPointer);
+    stage.addEventListener("pointerleave", event => {
+      if (activePointer !== null) return;
+      if (finePointer) setRotation(0, 0);
+    });
+
+    stage.addEventListener("keydown", event => {
+      if (reduceMotion) return;
+      const step = event.shiftKey ? 2 : 1;
+      if (!["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown", "Home"].includes(event.key)) return;
+      event.preventDefault();
+      if (event.key === "Home") {
+        keyboardRotation = { x: 0, y: 0 };
+      } else {
+        if (event.key === "ArrowLeft") keyboardRotation.y = clamp(keyboardRotation.y - step, -5, 5);
+        if (event.key === "ArrowRight") keyboardRotation.y = clamp(keyboardRotation.y + step, -5, 5);
+        if (event.key === "ArrowUp") keyboardRotation.x = clamp(keyboardRotation.x - step, -4, 4);
+        if (event.key === "ArrowDown") keyboardRotation.x = clamp(keyboardRotation.x + step, -4, 4);
+      }
+      setRotation(keyboardRotation.x, keyboardRotation.y);
+    });
+
+    resetButton?.addEventListener("click", resetStage);
+    stage.addEventListener("blur", () => {
+      if (activePointer === null) resetStage();
     });
   }
 }
 
-
-/* Knyt/lossa visas som en separat, förenklad bandillustration.
-   Den påverkar inte produktfotot eftersom banden inte finns som frilagda lager. */
+/* Knytbanden visas i en ren illustration av den långa kudden. */
 const bandToggle = document.querySelector("[data-band-toggle]");
 const bandDemo = document.querySelector("[data-band-demo]");
 const bandStatus = document.querySelector("[data-band-status]");
@@ -97,11 +120,13 @@ const bandStatus = document.querySelector("[data-band-status]");
 bandToggle?.addEventListener("click", () => {
   const knotted = bandToggle.getAttribute("aria-pressed") !== "true";
   bandToggle.setAttribute("aria-pressed", String(knotted));
-  bandToggle.textContent = knotted ? "Lossa banden" : "Knyt banden";
+  bandToggle.textContent = knotted ? "Visa utan knut" : "Visa knytningen";
   bandDemo?.classList.toggle("is-knotted", knotted);
-  if (bandStatus) bandStatus.textContent = knotted
-    ? "Illustrationen visar knutna band."
-    : "Illustrationen visar lösa band.";
+  if (bandStatus) {
+    bandStatus.textContent = knotted
+      ? "Så kan banden mötas och knytas ihop för att hålla kudden på plats."
+      : "Banden från båda kortsidorna kan knytas ihop för att hålla kudden på plats.";
+  }
 });
 
 /* 2. Scroll-historien använder vanliga dokumentflödet.

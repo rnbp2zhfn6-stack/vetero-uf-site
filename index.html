@@ -23,28 +23,48 @@
 <section class="hero" id="hem"><div class="wrap hero-grid">
 <div class="hero-copy reveal"><span class="eyebrow">Sydd i Ulricehamn</span><h1 class="hero-logo-title"><span>VeteRo</span><em>vetekudde.</em></h1><p>VeteRo är en vetekudde på 15 × 60 cm med knytband vid båda kortsidorna och en separat innerkudde sydd i fack. Använd den varm eller kall och knyt fast den där du vill ha den. VeteRo UF syr kuddarna i Ulricehamn med restmaterial och vete från Skräddaregårdens Lantbruk i Trädet.</p><div class="hero-actions"><a class="button" data-order-link href="mailto:vetero.uf@gmail.com">Skicka köpförfrågan – 249 kr</a><a class="text-link" href="./product.html">Läs mer om produkten</a></div><p class="buy-help">Du får information om frakt och totalpris innan du tackar ja till köpet.</p><div class="hero-meta"><div><strong data-config="price">249 kr</strong><span>Pris</span></div><div><strong>15 × 60 cm</strong><span>Storlek</span></div><div><strong>Varm eller kall</strong><span>Användning</span></div></div></div>
 <div class="hero-visual reveal">
-  <div class="hero-image" data-pillow-stage>
-    <img data-home-image data-pillow-image src="https://static.wixstatic.com/media/f8d78f_65e624ea5bc04388900ea530c4e6e651~mv2.jpg" alt="VeteRos beige ytterfodral med knytband" fetchpriority="high">
-    <span class="pillow-cue" aria-hidden="true">Tryck eller dra försiktigt</span>
+  <div class="hero-image" data-pillow-stage tabindex="0" role="group" aria-label="Interaktiv bild av VeteRos beige ytterfodral. Dra med musen eller svep med fingret för att vrida bilden." aria-describedby="pillow-interaction-help">
+    <img data-home-image data-pillow-image src="https://static.wixstatic.com/media/f8d78f_65e624ea5bc04388900ea530c4e6e651~mv2.jpg" alt="VeteRos beige ytterfodral med salviagröna knytband" fetchpriority="high" decoding="async">
+    <span class="pillow-cue" aria-hidden="true"><span class="pillow-cue-dot"></span>Dra för att utforska</span>
   </div>
-  <div class="pillow-controls">
-    <button class="pillow-control-button" type="button" data-pillow-press>Tryck på kudden</button>
-    <button class="pillow-control-button pillow-control-secondary" type="button" data-pillow-reset>Återställ</button>
+  <div class="pillow-interaction-bar">
+    <p id="pillow-interaction-help"><span aria-hidden="true">↔</span> Dra eller svep på bilden för en diskret rörelse.</p>
+    <button class="pillow-reset" type="button" data-pillow-reset>Återställ vy</button>
   </div>
-  <p class="pillow-help">Prova att dra lite i bilden eller använd knapparna. Rörelsen är en förenklad visning, inte en fysisk tygsimulering.</p>
   <div class="band-demo" data-band-demo>
-    <div class="band-demo-graphic">
-      <svg viewBox="0 0 200 70" role="img" aria-label="Förenklad illustration av två knytband som möts">
-        <path class="band-line" d="M8 36 C36 36 58 36 99 36"/>
-        <path class="band-line" d="M192 36 C164 36 142 36 101 36"/>
-        <path class="band-knot" d="M100 36 C72 8 51 18 63 36 C75 52 91 38 100 36 C109 38 125 52 137 36 C149 18 128 8 100 36"/>
-        <path class="band-knot" d="M97 37 C88 49 90 60 100 60 C110 60 112 49 103 37"/>
-      </svg>
+    <div class="band-demo-top">
+      <div>
+        <span class="eyebrow">En genomtänkt detalj</span>
+        <h3>Knytband i båda ändar</h3>
+        <p>Bandens uppgift är enkel: hjälpa dig att fästa kudden där du vill ha den.</p>
+      </div>
+      <button class="band-toggle" type="button" data-band-toggle aria-pressed="false">Visa knytningen</button>
     </div>
-    <div class="band-demo-copy">
-      <button class="pillow-control-button pillow-control-secondary" type="button" data-band-toggle aria-pressed="false">Knyt banden</button>
-      <span data-band-status aria-live="polite">Förenklad illustration av knytbanden.</span>
-    </div>
+    <svg class="band-demo-illustration" viewBox="0 0 360 124" role="img" aria-label="Illustration av en lång vetekudde med knytband som möts i mitten">
+      <defs>
+        <linearGradient id="tie-pillow-fill" x1="0" x2="1" y1="0" y2="1">
+          <stop offset="0" stop-color="#f6eee1"/>
+          <stop offset="1" stop-color="#e7dbc8"/>
+        </linearGradient>
+        <linearGradient id="tie-band-fill" x1="0" x2="1">
+          <stop offset="0" stop-color="#9ca98f"/>
+          <stop offset="1" stop-color="#687b61"/>
+        </linearGradient>
+      </defs>
+      <ellipse cx="180" cy="106" rx="126" ry="7" fill="#66745f" opacity=".10"/>
+      <rect x="31" y="28" width="298" height="68" rx="29" fill="url(#tie-pillow-fill)" stroke="#d4c5ae" stroke-width="1.5"/>
+      <path d="M48 43 C100 36 260 36 312 43 M48 81 C100 88 260 88 312 81" fill="none" stroke="#fffaf1" stroke-width="2" opacity=".72"/>
+      <path class="band-strap band-strap-left" d="M33 62 C75 62 106 62 166 62" fill="none" stroke="url(#tie-band-fill)" stroke-width="8" stroke-linecap="round"/>
+      <path class="band-strap band-strap-right" d="M327 62 C285 62 254 62 194 62" fill="none" stroke="url(#tie-band-fill)" stroke-width="8" stroke-linecap="round"/>
+      <circle cx="166" cy="62" r="4" fill="#718267"/>
+      <circle cx="194" cy="62" r="4" fill="#718267"/>
+      <g class="band-knot" aria-hidden="true">
+        <path d="M180 62 C158 36 137 43 147 61 C156 77 171 67 180 62 C189 67 204 77 213 61 C223 43 202 36 180 62" fill="none" stroke="#718267" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M177 65 C166 78 171 91 180 92 C189 91 194 78 183 65" fill="none" stroke="#718267" stroke-width="6" stroke-linecap="round"/>
+        <path d="M180 60 C177 51 178 47 181 43" fill="none" stroke="#718267" stroke-width="4" stroke-linecap="round"/>
+      </g>
+    </svg>
+    <p class="band-demo-status" data-band-status aria-live="polite">Banden från båda kortsidorna kan knytas ihop för att hålla kudden på plats.</p>
   </div>
 </div>
 </div></section>
