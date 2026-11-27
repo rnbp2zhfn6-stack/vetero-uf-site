@@ -4,9 +4,12 @@ const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").match
 const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
 const isEnabled = name => effects[name] !== false;
 
+if (isEnabled("stickyGallery")) document.documentElement.classList.add("effects-sticky-gallery");
+if (isEnabled("faqMotion") && !reduceMotion) document.documentElement.classList.add("effects-faq-motion");
+
 /* 1. Lätt 2.5D-rörelse på den befintliga produktbilden.
    Hela fotot rör sig mycket lite. Det är inte en fysisk tygdeformation. */
-if (isEnabled("heroPillow") && !reduceMotion) {
+if (isEnabled("heroPillow")) {
   const stage = document.querySelector("[data-pillow-stage]");
   const pressButton = document.querySelector("[data-pillow-press]");
   const resetButton = document.querySelector("[data-pillow-reset]");
@@ -29,7 +32,7 @@ if (isEnabled("heroPillow") && !reduceMotion) {
       stage.classList.add("is-pressed");
       pressTimer = window.setTimeout(() => {
         stage.classList.remove("is-pressed");
-      }, 320);
+      }, reduceMotion ? 120 : 320);
     };
 
     stage.addEventListener("pointerdown", event => {
@@ -40,6 +43,7 @@ if (isEnabled("heroPillow") && !reduceMotion) {
     });
 
     stage.addEventListener("pointermove", event => {
+      if (reduceMotion) return;
       if (event.pointerType === "touch" && activePointer !== event.pointerId) return;
       if (event.pointerType === "mouse" && !finePointer) return;
 
@@ -64,6 +68,7 @@ if (isEnabled("heroPillow") && !reduceMotion) {
         resetStage();
       });
     });
+    window.addEventListener("pointerup", resetStage);
 
     pressButton?.addEventListener("click", pressStage);
     resetButton?.addEventListener("click", () => {
@@ -72,6 +77,23 @@ if (isEnabled("heroPillow") && !reduceMotion) {
     });
   }
 }
+
+
+/* Knyt/lossa visas som en separat, förenklad bandillustration.
+   Den påverkar inte produktfotot eftersom banden inte finns som frilagda lager. */
+const bandToggle = document.querySelector("[data-band-toggle]");
+const bandDemo = document.querySelector("[data-band-demo]");
+const bandStatus = document.querySelector("[data-band-status]");
+
+bandToggle?.addEventListener("click", () => {
+  const knotted = bandToggle.getAttribute("aria-pressed") !== "true";
+  bandToggle.setAttribute("aria-pressed", String(knotted));
+  bandToggle.textContent = knotted ? "Lossa banden" : "Knyt banden";
+  bandDemo?.classList.toggle("is-knotted", knotted);
+  if (bandStatus) bandStatus.textContent = knotted
+    ? "Illustrationen visar knytna band."
+    : "Illustrationen visar lösa band.";
+});
 
 /* 2. Scroll-historien använder vanliga dokumentflödet.
    Ingen pinning, snap eller låst scroll. */
