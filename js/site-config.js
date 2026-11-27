@@ -38,8 +38,9 @@
   }
 
   document.querySelectorAll("[data-order-link]").forEach(link => {
-    const subject = encodeURIComponent("Köpförfrågan – VeteRo (249 kr)");
-    const body = encodeURIComponent("Hej!\n\nJag vill göra en köpförfrågan för VeteRo (249 kr).\n\nKan ni återkomma med totalpris inklusive eventuell frakt, betalningssätt och beräknad leverans? Jag bekräftar köpet först när jag fått informationen.\n\nHälsningar");
+    const priceLabel = config.price + " " + config.currencyLabel;
+    const subject = encodeURIComponent("Köpförfrågan – VeteRo (" + priceLabel + ")");
+    const body = encodeURIComponent("Hej!\n\nJag vill göra en köpförfrågan för VeteRo (" + priceLabel + ").\n\nKan ni återkomma med totalpris inklusive eventuell frakt, betalningssätt och beräknad leverans? Jag bekräftar köpet först när jag fått informationen.\n\nHälsningar");
     link.href = "mailto:" + config.email + "?subject=" + subject + "&body=" + body;
   });
 
