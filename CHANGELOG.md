@@ -1,3 +1,9 @@
+## 27 november 2026 – vetekorn synliga vid lutning
+- Gjort kornskapandet säkrare så att de tidigare synliga kornen finns kvar tills ersättningen är färdig.
+- Satt startposition för varje korn direkt i SVG-elementet.
+- Justerat rörelsen så att korn i VeteRo-illustrationen förflyttas inom respektive fack.
+- Bytt versionsadress på JavaScript-filen för att undvika att webbläsaren återanvänder den tidigare felaktiga filen.
+
 ## 27 november 2026 – korrigerad kornanimation
 - Rättat ett JavaScript-fel som avbröt skapandet av vetekornen i lutningsjämförelsen.
 - Kornillustrationen kan nu initiera alla partiklar och uppdatera deras positioner när reglaget används.
