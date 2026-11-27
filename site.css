@@ -302,3 +302,61 @@
   .hero-image,.product-strip-image,.gallery-main{border-radius:20px}
   .hero-image img[data-home-image],.product-strip-image img[data-home-image-secondary],.gallery-main img{padding:12px}
 }
+
+/* VeteRo wordmark-inspired homepage heading */
+.hero h1.hero-logo-title{
+  font-family:var(--sans);
+  font-weight:760;
+  letter-spacing:-.065em;
+  line-height:.98;
+}
+.hero h1.hero-logo-title span{display:block}
+.hero h1.hero-logo-title em{
+  display:block;
+  margin-top:7px;
+  color:var(--sage);
+  font:600 .72em/1.05 var(--sans);
+  font-style:normal;
+  letter-spacing:-.045em;
+}
+.product-guide-note{
+  display:flex;
+  flex-direction:column;
+  gap:3px;
+  margin:16px 0 20px;
+  padding:13px 15px;
+  border:1px solid rgba(84,101,77,.18);
+  border-left:3px solid #87977b;
+  border-radius:12px;
+  background:linear-gradient(120deg,#f1f3eb,#fbf7f0);
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.55;
+}
+.product-guide-note strong{color:var(--green);font-size:13px}
+.qr-panel{
+  display:flex;
+  align-items:center;
+  gap:16px;
+  margin-top:25px;
+  padding:15px;
+  border:1px solid rgba(52,67,55,.12);
+  border-radius:18px;
+  background:#f7f5ef;
+}
+.qr-panel img{
+  width:104px;
+  height:104px;
+  flex:0 0 104px;
+  padding:7px;
+  border-radius:10px;
+  background:#fff;
+}
+.qr-panel strong{display:block;font:500 19px/1.2 var(--serif);color:var(--ink)}
+.qr-panel p{margin:5px 0 7px!important;color:var(--muted)!important;font-size:11px!important;line-height:1.4}
+.qr-panel a{font-size:11px;font-weight:650;color:var(--green);text-decoration:underline;text-underline-offset:3px}
+@media(max-width:650px){
+  .qr-panel{gap:12px;padding:12px}
+  .qr-panel img{width:88px;height:88px;flex-basis:88px}
+  .hero h1.hero-logo-title{font-size:52px}
+}
