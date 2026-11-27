@@ -360,3 +360,46 @@
   .qr-panel img{width:88px;height:88px;flex-basis:88px}
   .hero h1.hero-logo-title{font-size:52px}
 }
+
+/* VeteRo logotype lettering, based on the script wordmark on the UF profile */
+.brand>span{
+  font-family:"Allura",cursive;
+  font-size:29px;
+  font-weight:400;
+  line-height:.9;
+  letter-spacing:0;
+}
+.brand small{
+  margin-top:4px;
+  font-family:var(--sans);
+  font-size:9px;
+  font-weight:500;
+  line-height:1.2;
+  letter-spacing:.13em;
+}
+.hero h1.hero-logo-title{
+  font-family:"Allura",cursive;
+  font-size:clamp(82px,9.3vw,116px);
+  font-weight:400;
+  line-height:.82;
+  letter-spacing:0;
+}
+.hero h1.hero-logo-title span{
+  display:block;
+  font-family:"Allura",cursive;
+  font-weight:400;
+  letter-spacing:0;
+}
+.hero h1.hero-logo-title em{
+  display:block;
+  margin-top:14px;
+  color:var(--sage);
+  font:500 clamp(22px,2.5vw,29px)/1.15 var(--serif);
+  font-style:normal;
+  letter-spacing:.015em;
+}
+@media(max-width:650px){
+  .brand>span{font-size:26px}
+  .hero h1.hero-logo-title{font-size:90px}
+  .hero h1.hero-logo-title em{font-size:23px;margin-top:12px}
+}
