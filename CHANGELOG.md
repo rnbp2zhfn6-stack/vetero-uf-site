@@ -1,3 +1,7 @@
+## 27 november 2026 – korrigerad kornanimation
+- Rättat ett JavaScript-fel som avbröt skapandet av vetekornen i lutningsjämförelsen.
+- Kornillustrationen kan nu initiera alla partiklar och uppdatera deras positioner när reglaget används.
+
 ## 27 november 2026 – korrigerad illustration av innerkudden
 - Korndemon visar nu sydda avdelningar i både vertikal och horisontell riktning.
 - Kornens placering följer ett rutnät av separata fack i VeteRo-illustrationen.
