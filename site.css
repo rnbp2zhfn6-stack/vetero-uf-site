@@ -555,8 +555,9 @@ html.no-js .page-progress{display:none}
 .grain-controls p{grid-column:1/-1;margin:0;color:var(--muted);font-size:11px}
 .grain-disclaimer{margin:14px 0 0;text-align:center;color:var(--muted);font-size:10px}
 
-@media(min-width:981px) and (min-height:701px){
+@media(min-width:981px) and (min-height:760px){
   html.effects-sticky-gallery .product-page .gallery{position:sticky;top:88px;align-self:start}
+  html.effects-sticky-gallery .product-page .gallery-main{height:min(52vh,560px);min-height:400px}
 }
 @media(max-height:700px){
   html.effects-sticky-gallery .product-page .gallery{position:static}
