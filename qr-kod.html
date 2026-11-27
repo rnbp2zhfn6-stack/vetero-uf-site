@@ -1,0 +1,12 @@
+<!doctype html>
+<html lang="sv"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VeteRo UF – QR-kod</title><meta name="robots" content="noindex,nofollow">
+<link rel="stylesheet" href="./site.css"><style>
+body{min-height:100vh;display:grid;place-items:center;background:#f7f5f0;padding:24px}
+.qr-print{width:min(100%,520px);padding:36px;text-align:center;background:#fff;border:1px solid #ded9ce;border-radius:20px}
+.qr-print img{width:min(100%,340px);margin:20px auto}
+.qr-print h1{font:500 34px Georgia,serif;margin:12px 0}
+.qr-print p{color:#696d64}
+@media print{body{background:#fff;padding:0}.qr-print{border:0;box-shadow:none}}
+</style></head>
+<body><main class="qr-print"><h1>VeteRo UF</h1><p>Skanna koden för att besöka veterouf.com</p><img src="./vetero-qr.svg" alt="QR-kod till VeteRo UF:s webbplats"><p>veterouf.com</p><button type="button" onclick="window.print()">Skriv ut QR-koden</button></main></body></html>
