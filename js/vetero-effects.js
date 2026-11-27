@@ -152,15 +152,17 @@ if (isEnabled("grainDemo")) {
       if (!group) return;
 
       group.replaceChildren();
-      const count = 40;
+      const count = type === "divided" ? 30 : 40;
       for (let i = 0; i < count; i += 1) {
-        const channel = i % 5;
-        const column = Math.floor(i / 5);
+        const column = type === "divided" ? i % 6 : Math.floor(i / 5);
+        const row = type === "divided" ? Math.floor(i / 6) : i % 5;
         const seedA = ((i * 37 + 17) % 97) / 97;
         const seedB = ((i * 53 + 29) % 89) / 89;
-        const baseX = 28 + column * 34 + seedA * 10;
+        const baseX = type === "divided"
+          ? 34 + column * 49 + seedA * 10
+          : 28 + column * 34 + seedA * 10;
         const baseY = type === "divided"
-          ? 27 + channel * 22 + seedB * 7
+          ? 24 + row * 22 + seedB * 7
           : 27 + seedB * 82;
 
         const circle = document.createElementNS(namespace, "circle");
@@ -189,7 +191,7 @@ if (isEnabled("grainDemo")) {
       });
 
       particles.divided.forEach(particle => {
-        const x = particle.x + direction * progress * (5 + particle.seedA * 5);
+        const x = particle.x + direction * progress * (2 + particle.seedA * 2);
         particle.node.setAttribute("cx", String(clamp(x, 18, 302)));
         particle.node.setAttribute("cy", String(particle.y));
       });
