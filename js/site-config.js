@@ -1,0 +1,58 @@
+/* Central configuration for VeteRo.
+   TODO-FYLL-I: add stock, shipping, payments, pickup and seasonal delivery details when confirmed. */
+(function () {
+  "use strict";
+  const config = Object.freeze({
+    brand: "VeteRo",
+    email: "vetero.uf@gmail.com",
+    price: 249,
+    currencyLabel: "kr",
+    size: "15 × 60 cm",
+    stockStatus: null, // TODO-FYLL-I
+    shippingPrice: null, // TODO-FYLL-I
+    shippingTime: null, // TODO-FYLL-I
+    paymentMethods: [], // TODO-FYLL-I
+    pickupDetails: null, // TODO-FYLL-I
+    responseTime: null, // TODO-FYLL-I
+    christmasOrderDeadline: null // TODO-FYLL-I
+  });
+  window.VETERO_CONFIG = config;
+
+  document.querySelectorAll('[data-config="price"]').forEach(node => {
+    node.textContent = config.price + " " + config.currencyLabel;
+  });
+  document.querySelectorAll('[data-config="size"]').forEach(node => {
+    node.textContent = config.size;
+  });
+  document.querySelectorAll("[data-order-link]").forEach(link => {
+    const subject = encodeURIComponent("Köpförfrågan – VeteRo vetekudde");
+    const body = encodeURIComponent("Hej!\n\nJag är intresserad av att köpa en VeteRo-vetekudde.\n\nKan ni återkomma med information om betalning och leverans?\n\nHälsningar");
+    link.href = "mailto:" + config.email + "?subject=" + subject + "&body=" + body;
+  });
+
+  async function copyEmail(button) {
+    const status = button.parentElement?.querySelector("[data-copy-status]") || button.nextElementSibling;
+    try {
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(config.email);
+      } else {
+        const field = document.createElement("textarea");
+        field.value = config.email;
+        field.setAttribute("readonly", "");
+        field.style.position = "fixed";
+        field.style.opacity = "0";
+        document.body.appendChild(field);
+        field.select();
+        const copied = document.execCommand("copy");
+        field.remove();
+        if (!copied) throw new Error("Kunde inte kopiera");
+      }
+      if (status) status.textContent = "E-postadressen är kopierad.";
+    } catch (error) {
+      if (status) status.textContent = "Kopiera adressen manuellt: " + config.email;
+    }
+  }
+  document.querySelectorAll("[data-copy-email]").forEach(button => {
+    button.addEventListener("click", () => copyEmail(button));
+  });
+})();
