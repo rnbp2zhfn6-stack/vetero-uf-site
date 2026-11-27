@@ -1,29 +1,29 @@
-/* VeteRo – klickbara detaljer på originalfotot av ytterfodralet. */
+/* VeteRo – klickbara detaljer på originalfotot av örngottet. */
 (() => {
   const experience = document.querySelector("[data-pillow-experience]");
   if (!experience) return;
 
   const details = {
     cover: {
-      eyebrow: "Ytterfodral",
-      title: "Det beige ytterfodralet",
-      copy: "Det beige ytterfodralet är sytt av restmaterial från flera företag. Det omsluter innerkudden och är en separat del.",
+      eyebrow: "Örngott",
+      title: "Örngottet",
+      copy: "Örngottet är sytt av restmaterial från flera företag. Det omsluter innerkudden och är en separat del.",
       image: "https://static.wixstatic.com/media/f8d78f_65e624ea5bc04388900ea530c4e6e651~mv2.jpg",
-      alt: "Originalfoto av VeteRos beige ytterfodral med salviagröna knytband"
+      alt: "Originalfoto av VeteRos örngott med salviagröna knytband"
     },
     ties: {
       eyebrow: "Knytband",
       title: "Fäst kudden där du vill ha den",
       copy: "De salviagröna knytbanden sitter vid båda kortsidorna. De gör det möjligt att knyta fast VeteRo där du använder den.",
       image: "https://static.wixstatic.com/media/f8d78f_65e624ea5bc04388900ea530c4e6e651~mv2.jpg",
-      alt: "Originalfoto av VeteRos ytterfodral och knytband"
+      alt: "Originalfoto av VeteRos örngott och knytband"
     },
     inner: {
       eyebrow: "Innerkudde",
-      title: "Den svarta innerkudden",
+      title: "Den innerkudden",
       copy: "Innerkudden är en separat del, sydd med sömmar både vertikalt och horisontellt så att vetet delas upp i fack.",
       image: "https://static.wixstatic.com/media/f8d78f_01e40ff17a474e94b4c10228e103fcfb~mv2.jpg",
-      alt: "Originalfoto av VeteRos svarta innerkudde med sydda fack"
+      alt: "Originalfoto av VeteRos innerkudde med sydda fack"
     },
     wheat: {
       eyebrow: "Vetefyllning",
