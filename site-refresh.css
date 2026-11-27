@@ -637,3 +637,21 @@ body { background: var(--paper); color: var(--ink); }
 @media (prefers-reduced-motion: reduce) {
   .product-story-media img { transition: none !important; }
 }
+
+
+/* Text-led opening card: do not repeat the hero photograph in the next section. */
+.product-story-card-typographic {
+  display: flex;
+  align-items: flex-end;
+  aspect-ratio: 4 / 4.55;
+  padding: clamp(22px,3vw,34px);
+  border: 0;
+  background: var(--green);
+}
+.product-story-card-typographic .product-story-copy { padding: 0; }
+.product-story-card-typographic .product-story-label { color: rgba(255,255,255,.66); }
+.product-story-card-typographic .product-story-copy h3 { color: #fff; font-size: clamp(25px,2.7vw,34px); }
+.product-story-card-typographic .product-story-copy p { color: rgba(255,255,255,.78); }
+@media (max-width: 520px) {
+  .product-story-card-typographic { aspect-ratio: 5 / 4; }
+}
