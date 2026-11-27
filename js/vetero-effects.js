@@ -4,6 +4,15 @@ const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").match
 const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
 const isEnabled = name => effects[name] !== false;
 
+if (!isEnabled("heroPillow")) {
+  document.querySelectorAll("[data-pillow-press], [data-pillow-reset], [data-band-toggle]").forEach(control => {
+    control.hidden = true;
+  });
+}
+if (!isEnabled("grainDemo")) {
+  document.querySelector("[data-grain-demo]")?.classList.add("is-static");
+}
+
 if (isEnabled("stickyGallery")) document.documentElement.classList.add("effects-sticky-gallery");
 if (isEnabled("faqMotion") && !reduceMotion) document.documentElement.classList.add("effects-faq-motion");
 
@@ -142,6 +151,7 @@ if (isEnabled("grainDemo")) {
     function makeGrains(group, type) {
       if (!group) return;
 
+      group.replaceChildren();
       const count = 40;
       for (let i = 0; i < count; i += 1) {
         const channel = i % 5;
