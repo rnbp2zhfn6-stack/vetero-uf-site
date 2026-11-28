@@ -8,15 +8,15 @@
       eyebrow: "Örngott",
       title: "Örngottet",
       copy: "Örngottet är sytt av restmaterial från flera företag. Det omsluter innerkudden och är en separat del.",
-      image: "https://static.wixstatic.com/media/f8d78f_f5e9b9fe74a645b3b34e7b7b2493d271~mv2.jpg",
-      alt: "Foto av två VeteRo-vetekuddar med knytband"
+      image: "https://static.wixstatic.com/media/f8d78f_8af83a8e672642759ae0e599c805d858~mv2.jpg",
+      alt: "Närbild på VeteRos örngott och knytband"
     },
     ties: {
       eyebrow: "Knytband",
       title: "Fäst kudden där du vill ha den",
       copy: "Knytbanden sitter vid båda kortsidorna och gör det möjligt att fästa VeteRo där du använder den.",
-      image: "https://static.wixstatic.com/media/f8d78f_f5e9b9fe74a645b3b34e7b7b2493d271~mv2.jpg",
-      alt: "Foto av två VeteRo-vetekuddar med knytband"
+      image: "https://static.wixstatic.com/media/f8d78f_8af83a8e672642759ae0e599c805d858~mv2.jpg",
+      alt: "Närbild på VeteRos örngott och knytband"
     },
     inner: {
       eyebrow: "Innerkudde",

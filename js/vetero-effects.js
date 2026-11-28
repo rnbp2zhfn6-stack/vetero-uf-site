@@ -155,8 +155,8 @@ if (isEnabled("scrollStory")) {
   }
 }
 
-/* 3. Kornillustration. En schematisk visualisering, inte en mätning eller simulering
-   av en viss mängd vete. Alla partiklar skapas lokalt som SVG-cirklar. */
+/* 3. Kornillustration – 2 kanaler på bredden och cirka 8 fack längs kudden.
+   Det här är en tydlig principskiss, inte en fysiksimulering eller ett mått på varje söm. */
 if (isEnabled("grainDemo")) {
   const demo = document.querySelector("[data-grain-demo]");
 
@@ -168,92 +168,114 @@ if (isEnabled("grainDemo")) {
     const dividedSvg = demo.querySelector("[data-grain-svg='divided']");
     const reset = demo.querySelector("[data-grain-reset]");
     const status = demo.querySelector("[data-grain-status]");
+    const angleOutput = demo.querySelector("[data-grain-angle]");
     const namespace = "http://www.w3.org/2000/svg";
     const particles = { plain: [], divided: [] };
-
     const clamp = (value, min, max) => Math.max(min, Math.min(max, value));
 
     function makeGrains(group, type) {
       if (!group) return;
-
       const fragment = document.createDocumentFragment();
       const createdParticles = [];
-      const columnBounds = [[24, 60], [60, 109], [109, 158], [158, 207], [207, 256], [256, 296]];
-      const rowBounds = [[20, 37], [37, 59], [59, 81], [81, 103], [103, 125]];
-      const count = type === "divided" ? 30 : 40;
+      const left = 14;
+      const right = 626;
+      const top = 18;
+      const middle = 90;
+      const bottom = 162;
+      const columns = 8;
+      const count = columns * 2 * 3;
 
       for (let i = 0; i < count; i += 1) {
-        const column = type === "divided" ? i % 6 : Math.floor(i / 5);
-        const row = type === "divided" ? Math.floor(i / 6) : i % 5;
         const seedA = ((i * 37 + 17) % 97) / 97;
         const seedB = ((i * 53 + 29) % 89) / 89;
-        const baseX = type === "divided"
-          ? 34 + column * 49 + seedA * 10
-          : 28 + column * 34 + seedA * 10;
-        const baseY = type === "divided"
-          ? 24 + row * 22 + seedB * 7
-          : 27 + seedB * 82;
+        let baseX;
+        let baseY;
+        let minX;
+        let maxX;
+        let minY;
+        let maxY;
+
+        if (type === "divided") {
+          const column = Math.floor(i / 6);
+          const row = Math.floor((i % 6) / 3);
+          const cellWidth = (right - left) / columns;
+          minX = left + column * cellWidth + 10;
+          maxX = left + (column + 1) * cellWidth - 10;
+          minY = row === 0 ? top + 10 : middle + 8;
+          maxY = row === 0 ? middle - 8 : bottom - 10;
+          baseX = minX + 8 + seedA * Math.max(6, maxX - minX - 16);
+          baseY = minY + 6 + seedB * Math.max(6, maxY - minY - 12);
+        } else {
+          minX = left + 10;
+          maxX = right - 10;
+          minY = top + 10;
+          maxY = bottom - 10;
+          baseX = minX + seedA * (maxX - minX);
+          baseY = minY + seedB * (maxY - minY);
+        }
 
         const circle = document.createElementNS(namespace, "circle");
         circle.setAttribute("cx", String(baseX));
         circle.setAttribute("cy", String(baseY));
-        circle.setAttribute("r", String(3 + (i % 3) * 0.35));
+        circle.setAttribute("r", String(4 + (i % 3) * 0.45));
         circle.setAttribute("fill", i % 3 === 0 ? "#b88a4e" : "#d3b47d");
         circle.setAttribute("stroke", "#785c38");
-        circle.setAttribute("stroke-width", "0.55");
+        circle.setAttribute("stroke-width", "0.8");
         fragment.appendChild(circle);
 
-        const bounds = type === "divided" ? columnBounds[column] : [18, 302];
         createdParticles.push({
           node: circle,
           x: baseX,
           y: baseY,
-          minX: bounds[0] + 5,
-          maxX: bounds[1] - 5,
+          minX,
+          maxX,
+          minY,
+          maxY,
           seedA,
           seedB
         });
       }
 
-      // Ersätt fallback-kornen först när alla nya korn är färdigskapade.
       group.replaceChildren(fragment);
-      particles[type].push(...createdParticles);
+      particles[type] = createdParticles;
     }
 
     function setTilt(rawValue) {
-      const value = Number(rawValue) || 0;
-      const progress = Math.abs(value) / 22;
-      const targetX = value >= 0 ? 38 : 282;
-      const targetY = 76;
-      const direction = value >= 0 ? -1 : 1;
+      const value = clamp(Number(rawValue) || 0, -100, 100);
+      const progress = Math.abs(value) / 100;
+      const angle = value * 0.22;
+      const toRight = value >= 0;
+      const targetX = toRight ? 586 : 54;
 
       particles.plain.forEach(particle => {
-        const x = particle.x * (1 - progress) + targetX * progress;
-        const y = particle.y * (1 - progress) + targetY * progress;
-        particle.node.setAttribute("cx", String(clamp(x + particle.seedA * 8 * progress, 18, 302)));
-        particle.node.setAttribute("cy", String(clamp(y + (particle.seedB - 0.5) * 15 * progress, 24, 116)));
+        const x = particle.x + (targetX - particle.x) * progress * 0.88;
+        const y = 90 + (particle.y - 90) * (1 - progress * 0.72);
+        const smallScatter = (particle.seedB - 0.5) * 18 * progress;
+        particle.node.setAttribute("cx", String(clamp(x + (particle.seedA - 0.5) * 18 * progress, 32, 608)));
+        particle.node.setAttribute("cy", String(clamp(y + smallScatter, 34, 146)));
       });
 
       particles.divided.forEach(particle => {
-        // Kornen rör sig mot den lägre sidan inom sitt eget sydda fack.
-        const edge = direction < 0 ? particle.minX : particle.maxX;
-        const x = particle.x + (edge - particle.x) * progress * 0.58;
+        // Varje fack behåller sina korn. De kan röra sig inom facket, men inte vidare till nästa.
+        const edge = toRight ? particle.maxX : particle.minX;
+        const x = particle.x + (edge - particle.x) * progress * 0.78;
+        const y = particle.y + (particle.maxY - particle.y) * progress * 0.12;
         particle.node.setAttribute("cx", String(clamp(x, particle.minX, particle.maxX)));
-        particle.node.setAttribute("cy", String(particle.y));
+        particle.node.setAttribute("cy", String(clamp(y, particle.minY, particle.maxY)));
       });
 
-      if (plainSvg) plainSvg.style.setProperty("--grain-angle", (value * 0.34) + "deg");
-      if (dividedSvg) dividedSvg.style.setProperty("--grain-angle", (value * 0.34) + "deg");
+      if (plainSvg) plainSvg.style.setProperty("--grain-angle", angle + "deg");
+      if (dividedSvg) dividedSvg.style.setProperty("--grain-angle", angle + "deg");
+      if (angleOutput) angleOutput.textContent = Math.abs(Math.round(angle)) + "°";
       if (status) {
         status.textContent = value === 0
-          ? "Kuddarna ligger plant."
-          : "Illustrationen visar hur kornen kan förflyttas när kuddarna lutas.";
+          ? "Kuddarna ligger plant. Dra reglaget åt vänster eller höger för att jämföra."
+          : "Kuddarna lutar " + Math.abs(Math.round(angle)) + "° åt " + (toRight ? "höger" : "vänster") + ". Jämför hur vetet samlas i den öppna kudden medan det stannar i de separata facken.";
       }
     }
 
     makeGrains(plainGroup, "plain");
     makeGrains(dividedGroup, "divided");
-
     slider?.addEventListener("input", () => setTilt(slider.value));
     reset?.addEventListener("click", () => {
       if (slider) slider.value = "0";
