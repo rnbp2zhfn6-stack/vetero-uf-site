@@ -95,3 +95,13 @@
 - Utökat produktgalleriet med kombinerad render, fristående innerkudde och de ursprungliga produktfotona.
 - Märkt digitala visualiseringar tydligt och behållit originalfotona för att visa den faktiska prototypen.
 - Uppdaterat produktens strukturerade bilddata, delningsbilder, bildsitemap och cacheversioner.
+
+
+## 28 november 2026 – köpflöde och konvertering
+
+- Lagt till en faktabaserad informationsrad om storlek, varm/kall användning, knytband och lokal sömnad.
+- Byggt ett tillgängligt formulär som förbereder en köpförfrågan i besökarens e-postprogram.
+- Förtydligat att besökaren själv skickar mejlet; inget skickas automatiskt från webbplatsen.
+- Uppdaterat integritetssidan om hur formuläret fungerar.
+- Lagt till tydlig märkning av 3D-visualiseringar respektive originalfoton i produktgalleriet.
+- Förbättrat fokusmarkeringar, formulärfält och mobilanpassning.
