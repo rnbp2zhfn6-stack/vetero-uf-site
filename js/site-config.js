@@ -18,6 +18,10 @@
   });
   window.VETERO_CONFIG = config;
 
+  document.querySelectorAll("[data-current-year]").forEach(node => {
+    node.textContent = String(new Date().getFullYear());
+  });
+
   document.querySelectorAll('[data-config="price"]').forEach(node => {
     node.textContent = config.price + " " + config.currencyLabel;
   });
