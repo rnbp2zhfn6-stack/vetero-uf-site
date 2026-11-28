@@ -144,3 +144,39 @@ document.addEventListener("keydown", event => {
     }
   }
 });
+
+
+/* Subtle pointer response on the real product photograph.
+   This is a shallow perspective treatment, not a fabricated 3D product model. */
+const photoTilt = document.querySelector("[data-photo-tilt]");
+if (photoTilt && !reduceMotion && window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+  let frame = 0;
+  const resetPhotoTilt = () => {
+    photoTilt.style.setProperty("--photo-tilt-x", "0deg");
+    photoTilt.style.setProperty("--photo-tilt-y", "0deg");
+    photoTilt.style.setProperty("--photo-shine-x", "50%");
+    photoTilt.style.setProperty("--photo-shine-y", "50%");
+    photoTilt.style.setProperty("--photo-shine-opacity", "0");
+    photoTilt.classList.remove("is-pointer-active");
+  };
+
+  photoTilt.addEventListener("pointermove", event => {
+    if (event.pointerType !== "mouse") return;
+    const rect = photoTilt.getBoundingClientRect();
+    if (!rect.width || !rect.height) return;
+    if (frame) cancelAnimationFrame(frame);
+    frame = requestAnimationFrame(() => {
+      const x = Math.max(0, Math.min(1, (event.clientX - rect.left) / rect.width));
+      const y = Math.max(0, Math.min(1, (event.clientY - rect.top) / rect.height));
+      photoTilt.style.setProperty("--photo-tilt-y", ((x - 0.5) * 3.2).toFixed(2) + "deg");
+      photoTilt.style.setProperty("--photo-tilt-x", ((0.5 - y) * 2.4).toFixed(2) + "deg");
+      photoTilt.style.setProperty("--photo-shine-x", (x * 100).toFixed(1) + "%");
+      photoTilt.style.setProperty("--photo-shine-y", (y * 100).toFixed(1) + "%");
+      photoTilt.style.setProperty("--photo-shine-opacity", "1");
+      photoTilt.classList.add("is-pointer-active");
+    });
+  });
+
+  photoTilt.addEventListener("pointerleave", resetPhotoTilt);
+  photoTilt.addEventListener("blur", resetPhotoTilt, true);
+}
