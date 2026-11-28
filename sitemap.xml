@@ -20,6 +20,18 @@
       <image:loc>https://static.wixstatic.com/media/f8d78f_f0cae0d11c2f48ba915a29956e260f4b~mv2.png</image:loc>
       <image:title>Vetefyllning till VeteRo vetekudde</image:title>
     </image:image>
+      <image:image>
+      <image:loc>https://static.wixstatic.com/media/f8d78f_bdf34b5f1bfe44d4a16ea116b11ffc08~mv2.png</image:loc>
+      <image:title>3D-visualisering av VeteRos örngott med knytband</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://static.wixstatic.com/media/f8d78f_591f7394c0104ec9a8d86c7b9df3c096~mv2.png</image:loc>
+      <image:title>3D-visualisering av VeteRo med innerkudde och örngott</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://static.wixstatic.com/media/f8d78f_35924dbb17a44bcf9919f7062356f3ff~mv2.png</image:loc>
+      <image:title>3D-visualisering av VeteRos innerkudde med sydda fack</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://veterouf.com/product.html</loc>
@@ -39,6 +51,18 @@
     <image:image>
       <image:loc>https://static.wixstatic.com/media/f8d78f_f0cae0d11c2f48ba915a29956e260f4b~mv2.png</image:loc>
       <image:title>Vetefyllning till VeteRo vetekudde</image:title>
+    </image:image>
+      <image:image>
+      <image:loc>https://static.wixstatic.com/media/f8d78f_bdf34b5f1bfe44d4a16ea116b11ffc08~mv2.png</image:loc>
+      <image:title>3D-visualisering av VeteRos örngott med knytband</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://static.wixstatic.com/media/f8d78f_591f7394c0104ec9a8d86c7b9df3c096~mv2.png</image:loc>
+      <image:title>3D-visualisering av VeteRo med innerkudde och örngott</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://static.wixstatic.com/media/f8d78f_35924dbb17a44bcf9919f7062356f3ff~mv2.png</image:loc>
+      <image:title>3D-visualisering av VeteRos innerkudde med sydda fack</image:title>
     </image:image>
   </url>
   <url>
