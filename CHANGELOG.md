@@ -86,3 +86,12 @@
 - Justerat bildutsnittet för den nya stående bilden.
 - Flyttat de två klickbara markörerna till delar som faktiskt syns på fotot.
 - Länkat vidare till originalbilderna av innerkudden och vetefyllningen.
+
+
+## 28 november 2026 – studioillustrationer för produktgalleriet
+
+- Skapat och laddat upp tre digitala 3D-produktvisualiseringar till VeteRos Wix-bildbibliotek.
+- Lagt in en studiovy av örngotten och en fristående visualisering av innerkudden i startsidans produktberättelse.
+- Utökat produktgalleriet med kombinerad render, fristående innerkudde och de ursprungliga produktfotona.
+- Märkt digitala visualiseringar tydligt och behållit originalfotona för att visa den faktiska prototypen.
+- Uppdaterat produktens strukturerade bilddata, delningsbilder, bildsitemap och cacheversioner.
