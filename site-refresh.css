@@ -1052,3 +1052,18 @@ body { background: var(--paper); color: var(--ink); }
   .pillow-stage-surface,.pillow-stage-controls button { transition: none !important; }
   .pillow-stage-surface { transform: none !important; }
 }
+
+
+/* Homepage cleanup: the hero is intentionally text-led with one column after removing the hotspot scene. */
+.hero-grid {
+  grid-template-columns: minmax(0,1fr);
+}
+.hero-copy {
+  max-width: 760px;
+}
+.hero-copy>p:not(.eyebrow) {
+  max-width: 650px;
+}
+.hero-meta {
+  max-width: 560px;
+}
