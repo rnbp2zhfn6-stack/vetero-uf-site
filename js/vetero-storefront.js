@@ -289,12 +289,13 @@ document.querySelectorAll("[data-pillow-stage]").forEach(stage => {
   });
 
   surface.addEventListener("pointermove",event => {
+    if (!canRotate()) return;
     const rect = surface.getBoundingClientRect();
     if (rect.width && rect.height) {
       surface.style.setProperty("--stage-light-x",((event.clientX-rect.left)/rect.width*100).toFixed(1)+"%");
       surface.style.setProperty("--stage-light-y",((event.clientY-rect.top)/rect.height*100).toFixed(1)+"%");
     }
-    if (pointerId !== event.pointerId || !canRotate()) return;
+    if (pointerId !== event.pointerId) return;
     const dx = event.clientX-startX;
     const dy = event.clientY-startY;
     if (Math.abs(dx)+Math.abs(dy)>4) moved = true;
