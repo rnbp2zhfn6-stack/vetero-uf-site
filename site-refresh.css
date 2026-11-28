@@ -761,7 +761,7 @@ body { background: var(--paper); color: var(--ink); }
   .grain-visual-frame { min-height: 310px; }
 }
 @media (max-width: 760px) {
-  .grain-visual-frame { min-height: clamp(250px,58vw,430px); margin-inline: -4px; }
+  .grain-visual-frame { min-height: clamp(250px,62vw,460px); margin-inline: -4px; }
   .grain-card p { min-height: 0; }
   .grain-controls { grid-template-columns: 1fr auto; gap: 10px 14px; }
   .grain-slider-label { grid-column: 1 / -1; }
