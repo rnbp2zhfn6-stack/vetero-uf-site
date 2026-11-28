@@ -91,6 +91,7 @@ function closeLightbox() {
 }
 
 const galleryThumbs = document.querySelectorAll("[data-gallery-thumb]");
+const galleryLabel = document.querySelector("[data-gallery-label]");
 if (lightboxOpen) lightboxOpen.disabled = false;
 galleryThumbs.forEach(button => {
   button.disabled = false;
@@ -98,6 +99,11 @@ galleryThumbs.forEach(button => {
     if (!mainImage) return;
     mainImage.src = button.dataset.image;
     mainImage.alt = button.dataset.alt || "VeteRo produktbild";
+    if (galleryLabel) {
+      const isRender = button.dataset.kind === "render";
+      galleryLabel.hidden = !isRender;
+      galleryLabel.textContent = isRender ? "3D-visualisering" : "";
+    }
     galleryThumbs.forEach(thumb => {
       thumb.setAttribute("aria-pressed", String(thumb === button));
     });
