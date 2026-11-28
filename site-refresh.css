@@ -775,3 +775,38 @@ body { background: var(--paper); color: var(--ink); }
   .grain-card-heading span { font-size: 8px; }
 }
 @media (prefers-reduced-motion: reduce) { .grain-svg { transition: none !important; } }
+
+
+/* Restrained depth on the real VeteRo photograph. No simulated product geometry. */
+.pillow-product-frame[data-photo-tilt] {
+  --photo-tilt-x: 0deg;
+  --photo-tilt-y: 0deg;
+  --photo-shine-x: 50%;
+  --photo-shine-y: 50%;
+  --photo-shine-opacity: 0;
+  transform: perspective(1100px) rotateX(var(--photo-tilt-x)) rotateY(var(--photo-tilt-y));
+  transform-style: preserve-3d;
+  transition: transform 420ms cubic-bezier(.2,.72,.22,1);
+  will-change: transform;
+}
+.pillow-product-frame[data-photo-tilt]::after {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: var(--photo-shine-opacity);
+  background: radial-gradient(ellipse at var(--photo-shine-x) var(--photo-shine-y), rgba(255,255,255,.22), transparent 48%);
+  transition: opacity 180ms ease;
+}
+.pillow-product-frame[data-photo-tilt] .pillow-hotspot { z-index: 3; }
+.pillow-product-frame[data-photo-tilt].is-pointer-active { transition-duration: 90ms; }
+@media (hover: none), (pointer: coarse) {
+  .pillow-product-frame[data-photo-tilt] { transform: none; transition: none; }
+  .pillow-product-frame[data-photo-tilt]::after { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pillow-product-frame[data-photo-tilt] { transform: none; transition: none; will-change: auto; }
+  .pillow-product-frame[data-photo-tilt]::after { display: none; }
+}
