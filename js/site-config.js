@@ -41,6 +41,35 @@
     }
   }
 
+
+  document.querySelectorAll("[data-order-request]").forEach(form => {
+    form.addEventListener("submit", event => {
+      event.preventDefault();
+      if (!form.reportValidity()) return;
+      const fields = new FormData(form);
+      const name = String(fields.get("name") || "").trim();
+      const email = String(fields.get("email") || "").trim();
+      const message = String(fields.get("message") || "").trim();
+      if (!name || !email) return;
+      const subject = encodeURIComponent("Köpförfrågan – VeteRo (249 kr)");
+      const lines = [
+        "Hej!", "",
+        "Jag vill göra en köpförfrågan för VeteRo (249 kr).", "",
+        "Namn: " + name,
+        "E-post: " + email,
+        message ? "" : null,
+        message ? "Meddelande: " + message : null,
+        "",
+        "Kan ni återkomma med totalpris inklusive eventuell frakt, betalningssätt och beräknad leverans?",
+        "Jag bekräftar köpet först när jag fått informationen.", "",
+        "Hälsningar", name
+      ].filter(line => line !== null);
+      const status = form.querySelector("[data-order-status]");
+      if (status) status.textContent = "Ett mejlutkast öppnas i ditt e-postprogram. Kontrollera uppgifterna och tryck själv på Skicka.";
+      window.location.href = "mailto:" + config.email + "?subject=" + subject + "&body=" + encodeURIComponent(lines.join("\n"));
+    });
+  });
+
   document.querySelectorAll("[data-order-link]").forEach(link => {
     const priceLabel = config.price + " " + config.currencyLabel;
     const subject = encodeURIComponent("Köpförfrågan – VeteRo (" + priceLabel + ")");
