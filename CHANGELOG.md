@@ -77,3 +77,12 @@
 - Lagt till Lighthouse CI för mobil och desktop med rapporter som sparas i GitHub Actions.
 - Inga tunga frontend- eller animationsramverk installerades; den statiska webbplatsen behålls.
 - Första Lighthouse-mätningen är ännu inte körd och inga poäng påstås.
+
+
+## 28 november 2026 – nya produktbilder
+
+- Lagt in VeteRos nya originalfotografi i Wix Media Manager.
+- Bytt ut den tidigare huvudbilden på startsidan, produktsidan, delningsmetadata, bildgalleriet och bildsitemap.
+- Justerat bildutsnittet för den nya stående bilden.
+- Flyttat de två klickbara markörerna till delar som faktiskt syns på fotot.
+- Länkat vidare till originalbilderna av innerkudden och vetefyllningen.

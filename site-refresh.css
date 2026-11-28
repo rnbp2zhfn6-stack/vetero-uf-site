@@ -655,3 +655,50 @@ body { background: var(--paper); color: var(--ink); }
 @media (max-width: 520px) {
   .product-story-card-typographic { aspect-ratio: 5 / 4; }
 }
+
+
+/* New VeteRo product photograph: crop consistently to the pillow composition. */
+.pillow-original-photo {
+  object-fit: cover;
+  object-position: center 50%;
+}
+.pillow-component-links {
+  position: absolute;
+  z-index: 4;
+  left: 18px;
+  right: 18px;
+  bottom: 42px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+}
+.pillow-component-links a {
+  color: #43583f;
+  font-size: 10px;
+  font-weight: 650;
+  text-decoration: underline;
+  text-decoration-color: rgba(67,88,63,.38);
+  text-underline-offset: 3px;
+}
+.pillow-component-links a:hover { color: #26372a; }
+.gallery-main {
+  height: auto;
+  min-height: 0;
+  max-height: 720px;
+  aspect-ratio: 3 / 4;
+}
+.gallery-main img {
+  padding: 0;
+  object-fit: cover;
+  object-position: center 50%;
+}
+@media (max-width: 760px) {
+  .gallery-main {
+    height: auto;
+    min-height: 0;
+    max-height: 550px;
+    aspect-ratio: 3 / 4;
+  }
+  .pillow-component-links { bottom: 39px; gap: 6px 12px; }
+}
