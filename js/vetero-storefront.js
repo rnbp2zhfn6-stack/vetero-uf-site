@@ -92,6 +92,7 @@ function closeLightbox() {
 
 const galleryThumbs = document.querySelectorAll("[data-gallery-thumb]");
 const galleryLabel = document.querySelector("[data-gallery-label]");
+const galleryStage = document.querySelector("[data-pillow-stage]");
 if (lightboxOpen) lightboxOpen.disabled = false;
 galleryThumbs.forEach(button => {
   button.disabled = false;
@@ -103,6 +104,20 @@ galleryThumbs.forEach(button => {
       const isRender = button.dataset.kind === "render";
       galleryLabel.hidden = !isRender;
       galleryLabel.textContent = isRender ? "3D-visualisering" : "";
+    }
+    if (galleryStage) {
+      const isRender = button.dataset.kind === "render";
+      galleryStage.dataset.stageKind = button.dataset.kind || "photo";
+      galleryStage.classList.toggle("is-stage-disabled", !isRender);
+      galleryStage.querySelectorAll("[data-stage-step],[data-stage-reset]").forEach(control => {
+        control.disabled = !isRender;
+      });
+      const stageHint = galleryStage.querySelector("[data-stage-hint]");
+      if (stageHint) {
+        stageHint.textContent = isRender
+          ? "Dra bilden med musen eller fingret för att ändra perspektivet. Du kan också använda knapparna."
+          : "Originalfoto visas utan perspektiveffekt. Välj en 3D-visualisering för att ändra vyn.";
+      }
     }
     galleryThumbs.forEach(thumb => {
       thumb.setAttribute("aria-pressed", String(thumb === button));
@@ -186,3 +201,128 @@ if (photoTilt && !reduceMotion && window.matchMedia("(hover: hover) and (pointer
   photoTilt.addEventListener("pointerleave", resetPhotoTilt);
   photoTilt.addEventListener("blur", resetPhotoTilt, true);
 }
+
+
+/* Draggable perspective stage for VeteRo studio renders.
+   This adjusts a still image, not a 360-degree 3D model. */
+document.querySelectorAll("[data-pillow-stage]").forEach(stage => {
+  const surface = stage.querySelector("[data-stage-surface]");
+  const reset = stage.querySelector("[data-stage-reset]");
+  const controls = stage.querySelectorAll("[data-stage-step]");
+  const hint = stage.querySelector("[data-stage-hint]");
+  if (!surface) return;
+
+  let rotationX = 0;
+  let rotationY = 0;
+  let pointerId = null;
+  let startX = 0;
+  let startY = 0;
+  let startRotationX = 0;
+  let startRotationY = 0;
+  let moved = false;
+  let suppressClick = false;
+  let frame = 0;
+
+  const clamp = (value,min,max) => Math.max(min,Math.min(max,value));
+  const canRotate = () => stage.dataset.stageKind !== "photo";
+  const setRotation = () => {
+    surface.style.setProperty("--stage-rotate-x",rotationX.toFixed(2)+"deg");
+    surface.style.setProperty("--stage-rotate-y",rotationY.toFixed(2)+"deg");
+    stage.style.setProperty("--stage-shadow-x",(rotationY*.65).toFixed(1)+"px");
+    stage.style.setProperty("--stage-shadow-y",(Math.abs(rotationX)*.5).toFixed(1)+"px");
+    stage.classList.toggle("is-stage-rotated",Math.abs(rotationX)+Math.abs(rotationY)>.5);
+  };
+  const rotateBy = (x,y) => {
+    if (!canRotate()) return;
+    rotationX = clamp(rotationX+x,-10,10);
+    rotationY = clamp(rotationY+y,-16,16);
+    setRotation();
+  };
+  const resetView = () => {
+    rotationX = 0;
+    rotationY = 0;
+    surface.style.setProperty("--stage-light-x","50%");
+    surface.style.setProperty("--stage-light-y","40%");
+    setRotation();
+  };
+  const syncState = () => {
+    const disabled = !canRotate();
+    controls.forEach(button => { button.disabled = disabled; });
+    if (reset) reset.disabled = disabled;
+    if (hint && disabled) {
+      hint.textContent = "Originalfoto visas utan perspektiveffekt. Välj en 3D-visualisering för att ändra vyn.";
+    }
+  };
+
+  controls.forEach(button => {
+    button.addEventListener("click",() => {
+      if (button.dataset.stageStep === "left") rotateBy(0,-6);
+      if (button.dataset.stageStep === "right") rotateBy(0,6);
+    });
+  });
+  reset?.addEventListener("click",resetView);
+
+  surface.addEventListener("keydown",event => {
+    if (!canRotate()) return;
+    const steps = {
+      ArrowLeft:[0,-4],
+      ArrowRight:[0,4],
+      ArrowUp:[3,0],
+      ArrowDown:[-3,0]
+    };
+    const step = steps[event.key];
+    if (!step) return;
+    event.preventDefault();
+    rotateBy(step[0],step[1]);
+  });
+
+  surface.addEventListener("pointerdown",event => {
+    if (!canRotate() || event.button > 0) return;
+    pointerId = event.pointerId;
+    startX = event.clientX;
+    startY = event.clientY;
+    startRotationX = rotationX;
+    startRotationY = rotationY;
+    moved = false;
+    surface.classList.add("is-stage-dragging");
+    try { surface.setPointerCapture(pointerId); } catch (error) {}
+  });
+
+  surface.addEventListener("pointermove",event => {
+    const rect = surface.getBoundingClientRect();
+    if (rect.width && rect.height) {
+      surface.style.setProperty("--stage-light-x",((event.clientX-rect.left)/rect.width*100).toFixed(1)+"%");
+      surface.style.setProperty("--stage-light-y",((event.clientY-rect.top)/rect.height*100).toFixed(1)+"%");
+    }
+    if (pointerId !== event.pointerId || !canRotate()) return;
+    const dx = event.clientX-startX;
+    const dy = event.clientY-startY;
+    if (Math.abs(dx)+Math.abs(dy)>4) moved = true;
+    if (frame) cancelAnimationFrame(frame);
+    frame = requestAnimationFrame(() => {
+      rotationY = clamp(startRotationY+dx*.13,-16,16);
+      rotationX = clamp(startRotationX-dy*.10,-10,10);
+      setRotation();
+    });
+  });
+
+  const finishDrag = event => {
+    if (pointerId !== event.pointerId) return;
+    if (moved) suppressClick = true;
+    pointerId = null;
+    surface.classList.remove("is-stage-dragging");
+    if (moved) window.setTimeout(() => { suppressClick = false; },0);
+  };
+  surface.addEventListener("pointerup",finishDrag);
+  surface.addEventListener("pointercancel",finishDrag);
+  surface.addEventListener("lostpointercapture",finishDrag);
+  surface.addEventListener("click",event => {
+    if (!suppressClick) return;
+    event.preventDefault();
+    event.stopImmediatePropagation();
+    suppressClick = false;
+  },true);
+
+  syncState();
+  setRotation();
+});
